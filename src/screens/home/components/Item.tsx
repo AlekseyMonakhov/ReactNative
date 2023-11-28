@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     elevation: {
-        elevation: 50,
+        elevation: 5,
     },
 
     imageContainer: {

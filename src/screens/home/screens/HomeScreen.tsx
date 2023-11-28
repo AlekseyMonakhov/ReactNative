@@ -31,6 +31,7 @@ const HomeScreen = () => {
                 renderItem={({ item }) => <Item item={item} />}
                 keyExtractor={(item) => item.id.toString()}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
+                contentContainerStyle={{ paddingBottom: 20 }}
             />
         </SafeAreaView>
 
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
         paddingRight: 5,
     },
     separator: {
-        height: 10,
+        height: 25,
     },
 
 
