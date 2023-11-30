@@ -1,8 +1,8 @@
-import { IItem } from '@/src/types';
 import { FC, memo, useCallback } from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import StyledButton from '@/src/components/Button';
+import { IItem } from '@/types';
 
 type Props = {
     item: IItem;
@@ -69,13 +69,15 @@ const Item: FC<Props> = ({ item }) => {
 
                 <StyledButton
                     onPress={addToCart}
-                    title="Add to cart"
-                    iconProps={{
-                        name: "cart-plus",
-                        size: 24,
-                        color: "#ffffff",
-                    }}
-                />
+                >
+                    <Icon
+                        name="cart-plus"
+                        color="#ffffff"
+                        size={24}
+                    />
+                    <Text style={styles.addToCartText}>Add to cart</Text>
+                    
+                </StyledButton>
 
 
             </View>
@@ -162,4 +164,9 @@ const styles = StyleSheet.create({
         top: 0,
         right: 0,
     },
+    addToCartText: {
+        color: '#ffffff',
+        fontSize: 16,
+        fontWeight: 'bold',
+    }
 })

@@ -1,8 +1,8 @@
-import { IItem } from '@/src/types/index'
 import { View, Text, StyleSheet, FlatList, SafeAreaView } from 'react-native'
 import useSWR from 'swr'
 
 import Item from '../components/Item';
+import { IItem } from '@/types';
 
 const HomeScreen = () => {
 

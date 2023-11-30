@@ -1,23 +1,21 @@
 import { TouchableOpacity, Text, StyleSheet } from "react-native"
-import { memo, FC } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { memo, FC, PropsWithChildren } from 'react';
+
 import { IconProps } from "react-native-vector-icons/Icon";
 
 
 type Props = {
-    title: string;
     onPress: () => void;
-    iconProps: IconProps;
 }
 
-const StyledButton: FC<Props> = ({ iconProps, onPress, title }) => {
+const StyledButton: FC<PropsWithChildren<Props>> = ({ onPress, children }) => {
     return (
         <TouchableOpacity
             style={styles.btn}
             onPress={onPress}
         >
-            {iconProps && <Icon {...iconProps} />}
-            <Text style={styles.text}>{title}</Text>
+            {children}
+
         </TouchableOpacity>
     )
 }
@@ -41,10 +39,5 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-    },
-    text: {
-        color: '#ffffff',
-        fontSize: 16,
-        fontWeight: 'bold',
     }
 })
