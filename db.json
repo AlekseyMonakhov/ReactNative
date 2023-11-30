@@ -1,0 +1,33 @@
+{
+    "items": [
+        {
+            "title": "Pizza 1",
+            "description": "Some description of pizza 1 with a very long description that should be cut off at some point. I don't know how long it should be, but it should be long enough to test the layout.",
+            "newPrice": 10.99,
+            "oldPrice": 12.99,
+            "image": "https://www.southernliving.com/thmb/3x3cJaiOvQ8-3YxtMQX0vvh1hQw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/2652401_QFSSL_SupremePizza_00072-d910a935ba7d448e8c7545a963ed7101.jpg",
+            "id": 1,
+            "isNew": true
+        },
+        {
+            "title": "Pizza 2",
+            "description": "Some long description of pizza 2",
+            "newPrice": 15.99,
+            "oldPrice": 20.99,
+            "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2015/10/pizza-recipe-1.jpg",
+            "id": 2,
+            "isNew": false
+        },
+        {
+            "title": "Pizza 3",
+            "description": "Some very long description of pizza 3",
+            "newPrice": 15.99,
+            "oldPrice": 17.99,
+            "image": "https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg",
+            "id": 3,
+            "isNew": false
+        }
+    ],
+    "cart": [],
+    "favorites": []
+}
