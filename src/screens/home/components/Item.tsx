@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import StyledButton from '@/src/components/Button';
 import { IItem } from '@/types';
+import { colors } from '@/src/utils/colors';
 
 type Props = {
     item: IItem;
@@ -35,7 +36,11 @@ const Item: FC<Props> = ({ item }) => {
                     source={{ uri: item.image }} />
             </View>
             <View style={styles.infoContainer}>
-                <Text style={styles.infoTitle}>
+                <Text
+                    style={styles.infoTitle}
+                    numberOfLines={2}
+                    ellipsizeMode='tail'
+                >
                     {item.title}
                 </Text>
 
@@ -50,7 +55,7 @@ const Item: FC<Props> = ({ item }) => {
 
                 <Text
                     style={styles.infoDescription}
-                    numberOfLines={3}
+                    numberOfLines={2}
                     ellipsizeMode='tail'
                 >
                     {item.description}
@@ -63,7 +68,7 @@ const Item: FC<Props> = ({ item }) => {
                     <Icon
                         name="heart"
                         size={24}
-                        color="#b949b1"
+                        color={colors.purple}
                     />
                 </TouchableOpacity>
 
@@ -72,11 +77,11 @@ const Item: FC<Props> = ({ item }) => {
                 >
                     <Icon
                         name="cart-plus"
-                        color="#ffffff"
+                        color={colors.white}
                         size={24}
                     />
                     <Text style={styles.addToCartText}>Add to cart</Text>
-                    
+
                 </StyledButton>
 
 
@@ -90,8 +95,8 @@ export default memo(Item);
 
 const styles = StyleSheet.create({
     card: {
-        padding: 16,
-        backgroundColor: 'white',
+        padding: 12,
+        backgroundColor: colors.white,
         flexDirection: 'row',
         height: 200,
         borderWidth: 1,
@@ -114,11 +119,11 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: -16,
         right: -16,
-        backgroundColor: 'white',
+        backgroundColor: colors.white,
         padding: 12,
         borderWidth: 1,
         borderRadius: 50,
-        color: 'red',
+        color: colors.red,
         fontSize: 12,
         zIndex: 10,
     },
@@ -138,10 +143,11 @@ const styles = StyleSheet.create({
     infoTitle: {
         fontSize: 24,
         fontWeight: 'bold',
+        maxWidth: '80%',
     },
     infoDescription: {
         fontSize: 12,
-        color: 'gray',
+        color: colors.gray,
         marginBottom: 10,
     },
     infoPriceContainer: {
@@ -156,7 +162,7 @@ const styles = StyleSheet.create({
     },
     infoPriceOld: {
         fontSize: 12,
-        color: 'gray',
+        color: colors.gray,
         textDecorationLine: 'line-through',
     },
     addToFavoriteBtn: {
@@ -165,7 +171,7 @@ const styles = StyleSheet.create({
         right: 0,
     },
     addToCartText: {
-        color: '#ffffff',
+        color: colors.white,
         fontSize: 16,
         fontWeight: 'bold',
     }

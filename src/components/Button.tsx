@@ -1,7 +1,7 @@
-import { TouchableOpacity, Text, StyleSheet } from "react-native"
+import { StyleSheet, Pressable } from "react-native"
 import { memo, FC, PropsWithChildren } from 'react';
+import { colors } from "../utils/colors";
 
-import { IconProps } from "react-native-vector-icons/Icon";
 
 
 type Props = {
@@ -10,13 +10,14 @@ type Props = {
 
 const StyledButton: FC<PropsWithChildren<Props>> = ({ onPress, children }) => {
     return (
-        <TouchableOpacity
+        <Pressable
             style={styles.btn}
             onPress={onPress}
+            android_ripple={{ color: 'rgba(255, 255, 255, 0.3)', borderless: false, radius: 100, foreground: false }}
         >
             {children}
 
-        </TouchableOpacity>
+        </Pressable>
     )
 }
 
@@ -31,9 +32,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,
-        borderColor: '#007bff',
+        borderColor: colors.blue,
         borderRadius: 30,
-        backgroundColor: '#007bff',
+        backgroundColor: colors.blue,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
