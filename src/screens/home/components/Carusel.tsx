@@ -67,26 +67,16 @@ const Item: FC<typeof data[0]> = memo(({ title, description, image }) => {
         try {
             const message = `${title}\n\n${description}\n\nMore details: ${image}`;
             const result = await Share.share({
-
                 message: message,
                 url: image,
             });
-            if (result.action === Share.sharedAction) {
-                if (result.activityType) {
-                    // shared with activity type of result.activityType
-                } else {
-                    // shared
-                }
-            } else if (result.action === Share.dismissedAction) {
-                // dismissed
-            }
         } catch (error: any) {
             Alert.alert(error.message);
         }
     };
 
     return (
-        <TouchableOpacity onPress={onShare}>
+        <TouchableOpacity onPress={onShare} activeOpacity={1}>
             <View style={styles.item}>
                 <ImageBackground
                     source={{ uri: image }}
@@ -146,7 +136,7 @@ const Carusel = () => {
 
         setTimeout(() => {
             setCaruselData((prev) => [...prev, {
-                "id": 7,
+                "id": prev.length + 1,
                 "title": "Spicy Pepperoni Treat",
                 "description": "Indulge in the spicy goodness of pepperoni on a classic crust.",
                 "image": "https://www.cobsbread.com/wp-content/uploads/2022/09/Pepperoni-pizza-850x630-1-585x400-1.jpg"
@@ -212,20 +202,13 @@ const Carusel = () => {
                 }
             />
 
-            <ScrollView
+            <FlatList
                 contentContainerStyle={styles.paginationContainer}
-                showsHorizontalScrollIndicator={true}
-                pagingEnabled
-            >
-                {
-                    caruselData.map((_, index) => (
-                        <View
-                            key={index}
-                            style={[styles.dot, activeIndex === index ? styles.dotActive : null]}
-                        />
-                    ))
-                }
-            </ScrollView>
+                data={caruselData}
+                horizontal
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item, index }) => <View style={[styles.dot, activeIndex === index ? styles.dotActive : null]} />}
+            />
 
         </View>
 
@@ -239,7 +222,7 @@ export default memo(Carusel);
 const styles = StyleSheet.create({
     item: {
         width: width - 110,
-        height: 500,
+        height: 450,
     },
     textContainer: {
         backgroundColor: 'rgba(0,0,0,0.5)',
@@ -265,7 +248,6 @@ const styles = StyleSheet.create({
     },
     paginationContainer: {
         flex: 1,
-        flexDirection: 'row',
         paddingVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
