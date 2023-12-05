@@ -1,6 +1,20 @@
 import { colors } from '@/src/utils/colors';
 import React, { FC, memo, useState, useRef, useEffect, useCallback } from 'react'
-import { RefreshControl, View, StyleSheet, Text, FlatList, ImageBackground, Dimensions, NativeSyntheticEvent, NativeScrollEvent, ScrollView } from 'react-native'
+import {
+    RefreshControl,
+    View,
+    StyleSheet,
+    Text,
+    FlatList,
+    ImageBackground,
+    Dimensions,
+    NativeSyntheticEvent,
+    NativeScrollEvent,
+    ScrollView,
+    Share,
+    Alert,
+    TouchableOpacity
+} from 'react-native'
 
 
 
@@ -47,19 +61,45 @@ const { width } = Dimensions.get('screen');
 
 
 const Item: FC<typeof data[0]> = memo(({ title, description, image }) => {
+
+
+    const onShare = async () => {
+        try {
+            const message = `${title}\n\n${description}\n\nMore details: ${image}`;
+            const result = await Share.share({
+
+                message: message,
+                url: image,
+            });
+            if (result.action === Share.sharedAction) {
+                if (result.activityType) {
+                    // shared with activity type of result.activityType
+                } else {
+                    // shared
+                }
+            } else if (result.action === Share.dismissedAction) {
+                // dismissed
+            }
+        } catch (error: any) {
+            Alert.alert(error.message);
+        }
+    };
+
     return (
-        <View style={styles.item}>
-            <ImageBackground
-                source={{ uri: image }}
-                style={styles.image}
-                resizeMode='cover'
-            >
-                <View style={styles.textContainer}>
-                    <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.description}>{description}</Text>
-                </View>
-            </ImageBackground>
-        </View>
+        <TouchableOpacity onPress={onShare}>
+            <View style={styles.item}>
+                <ImageBackground
+                    source={{ uri: image }}
+                    style={styles.image}
+                    resizeMode='cover'
+                >
+                    <View style={styles.textContainer}>
+                        <Text style={styles.title}>{title}</Text>
+                        <Text style={styles.description}>{description}</Text>
+                    </View>
+                </ImageBackground>
+            </View>
+        </TouchableOpacity>
     )
 })
 
@@ -90,6 +130,8 @@ const Carusel = () => {
             }
         }
     }, [activeIndex, caruselData.length])
+
+
 
 
     const onScrollHandler = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
