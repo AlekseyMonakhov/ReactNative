@@ -7,14 +7,15 @@ import { colors } from '@/src/utils/colors';
 import Header from '../components/Header';
 import { useState, useCallback, useTransition } from 'react';
 import Empty from '../components/Empty';
+import { RefreshControl } from 'react-native';
 
 const HomeScreen = () => {
     const [isPending, startTransition] = useTransition()
 
     const [searchValue, setSearchValue] = useState('');
+    const [refreshing, setRefreshing] = useState(false);
 
-
-    const { data, isLoading } = useSWR<IItem[]>(
+    const { data, isLoading, mutate } = useSWR<IItem[]>(
         'http://192.168.0.4:3001/items',
         (url: string) => fetch(url).then((res) => res.json()),
         {
@@ -29,8 +30,7 @@ const HomeScreen = () => {
     }, [])
 
 
-
-    if (isLoading || isPending) {
+    if (isLoading || isPending || !data) {
         return (
             <View style={styles.centered}>
                 <ActivityIndicator size={'large'} color={colors.blue} />
@@ -38,11 +38,89 @@ const HomeScreen = () => {
         )
     }
 
-
-
-    const filteredData = data?.filter((item) => {
+    const filteredData = data.filter((item) => {
         return item.title.toLowerCase().includes(searchValue.toLowerCase())
     })
+
+
+    const onRefreshHandler = useCallback(() => {
+        setRefreshing(true);
+
+        setTimeout(() => {
+            mutate([...data,
+            {
+                "title": "Four Cheese Pizza 12",
+                "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
+                "newPrice": 9.99,
+                "oldPrice": 12.99,
+                "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
+                "id": (data!.length + 1).toString(),
+                "isNew": true
+            },
+            ], false);
+
+
+
+            setRefreshing(false);
+        }, 2000)
+    }, [data])
+
+    const onEndReachedHandler = useCallback(() => {
+       
+
+        mutate([...data,
+        {
+            "title": "Four Cheese Pizza 12",
+            "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
+            "newPrice": 9.99,
+            "oldPrice": 12.99,
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
+            "id": Math.random().toString(),
+            "isNew": true
+        },
+        {
+            "title": "Four Cheese Pizza 12",
+            "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
+            "newPrice": 9.99,
+            "oldPrice": 12.99,
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
+            "id": Math.random().toString(),
+            "isNew": true
+        },
+        {
+            "title": "Four Cheese Pizza 12",
+            "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
+            "newPrice": 9.99,
+            "oldPrice": 12.99,
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
+            "id": Math.random().toString(),
+            "isNew": true
+        },
+        {
+            "title": "Four Cheese Pizza 12",
+            "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
+            "newPrice": 9.99,
+            "oldPrice": 12.99,
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
+            "id": Math.random().toString(),
+            "isNew": true
+        },
+        {
+            "title": "Four Cheese Pizza 12",
+            "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
+            "newPrice": 9.99,
+            "oldPrice": 12.99,
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
+            "id": Math.random().toString(),
+            "isNew": true
+        },
+        ], {
+            revalidate: false
+        });
+
+
+
+    }, [data])
 
     return (
         <SafeAreaView
@@ -60,6 +138,10 @@ const HomeScreen = () => {
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={Empty}
                 contentContainerStyle={{ paddingVertical: 20 }}
+                onEndReached={onEndReachedHandler}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefreshHandler} />
+                }
 
 
 

@@ -1,7 +1,7 @@
 import { colors } from '@/src/utils/colors';
 import React, { FC, memo, useState, useRef, useEffect, useCallback } from 'react'
 import {
-    RefreshControl,
+
     View,
     StyleSheet,
     Text,
@@ -10,7 +10,6 @@ import {
     Dimensions,
     NativeSyntheticEvent,
     NativeScrollEvent,
-    ScrollView,
     Share,
     Alert,
     TouchableOpacity
@@ -63,7 +62,7 @@ const { width } = Dimensions.get('screen');
 const Item: FC<typeof data[0]> = memo(({ title, description, image }) => {
 
 
-    const onShare = async () => {
+    const onShare = useCallback(async () => {
         try {
             const message = `${title}\n\n${description}\n\nMore details: ${image}`;
             const result = await Share.share({
@@ -73,7 +72,7 @@ const Item: FC<typeof data[0]> = memo(({ title, description, image }) => {
         } catch (error: any) {
             Alert.alert(error.message);
         }
-    };
+    }, [title, description, image])
 
     return (
         <TouchableOpacity onPress={onShare} activeOpacity={1}>
@@ -95,19 +94,18 @@ const Item: FC<typeof data[0]> = memo(({ title, description, image }) => {
 
 
 const Carusel = () => {
-    const [caruselData, setCaruselData] = useState<(typeof data[0])[]>(data);
 
     const [activeIndex, setActiveIndex] = useState(0);
     const listRef = useRef<FlatList>(null);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
-    const [refreshing, setRefreshing] = useState(false);
+
 
     useEffect(() => {
         timerRef.current = setInterval(() => {
             if (listRef.current) {
                 listRef.current.scrollToIndex({
-                    index: activeIndex === caruselData.length - 1 ? 0 : activeIndex + 1,
-                    animated: activeIndex !== caruselData.length - 1,
+                    index: activeIndex === data.length - 1 ? 0 : activeIndex + 1,
+                    animated: activeIndex !== data.length - 1,
                 })
             }
         }, 5000)
@@ -119,7 +117,7 @@ const Carusel = () => {
                 clearInterval(timerRef.current);
             }
         }
-    }, [activeIndex, caruselData.length])
+    }, [activeIndex])
 
 
 
@@ -131,80 +129,31 @@ const Carusel = () => {
         setActiveIndex(Math.round(index));
     }, [])
 
-    const onRefreshHandler = useCallback(() => {
-        setRefreshing(true);
-
-        setTimeout(() => {
-            setCaruselData((prev) => [...prev, {
-                "id": prev.length + 1,
-                "title": "Spicy Pepperoni Treat",
-                "description": "Indulge in the spicy goodness of pepperoni on a classic crust.",
-                "image": "https://www.cobsbread.com/wp-content/uploads/2022/09/Pepperoni-pizza-850x630-1-585x400-1.jpg"
-            }]);
 
 
-            setRefreshing(false);
-        }, 2000)
-    }, [])
 
-    const onEndReachedHandler = useCallback(() => {
-        setCaruselData((prev) => [...prev,
-        {
-            "id": prev.length + 1,
-            "title": "Spicy Pepperoni Treat",
-            "description": "Indulge in the spicy goodness of pepperoni on a classic crust.",
-            "image": "https://www.cobsbread.com/wp-content/uploads/2022/09/Pepperoni-pizza-850x630-1-585x400-1.jpg"
-        },
-        {
-            "id": prev.length + 2,
-            "title": "Spicy Pepperoni Treat",
-            "description": "Indulge in the spicy goodness of pepperoni on a classic crust.",
-            "image": "https://www.cobsbread.com/wp-content/uploads/2022/09/Pepperoni-pizza-850x630-1-585x400-1.jpg"
-        },
-        {
-            "id": prev.length + 3,
-            "title": "Spicy Pepperoni Treat",
-            "description": "Indulge in the spicy goodness of pepperoni on a classic crust.",
-            "image": "https://www.cobsbread.com/wp-content/uploads/2022/09/Pepperoni-pizza-850x630-1-585x400-1.jpg"
-        },
-        {
-            "id": prev.length + 4,
-            "title": "Spicy Pepperoni Treat",
-            "description": "Indulge in the spicy goodness of pepperoni on a classic crust.",
-            "image": "https://www.cobsbread.com/wp-content/uploads/2022/09/Pepperoni-pizza-850x630-1-585x400-1.jpg"
-        },
-        {
-            "id": prev.length + 5,
-            "title": "Spicy Pepperoni Treat",
-            "description": "Indulge in the spicy goodness of pepperoni on a classic crust.",
-            "image": "https://www.cobsbread.com/wp-content/uploads/2022/09/Pepperoni-pizza-850x630-1-585x400-1.jpg"
-        },
-        ]);
-    }, [])
 
 
     return (
         <View>
             <FlatList
                 ref={listRef}
-                data={caruselData}
+                data={data}
                 renderItem={({ item }) => <Item {...item} />}
                 keyExtractor={(item) => item.id.toString()}
                 horizontal
                 pagingEnabled
                 showsHorizontalScrollIndicator={false}
-                onEndReached={onEndReachedHandler}
+
                 onScroll={onScrollHandler}
 
 
-                refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={onRefreshHandler} />
-                }
+
             />
 
             <FlatList
                 contentContainerStyle={styles.paginationContainer}
-                data={caruselData}
+                data={data}
                 horizontal
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item, index }) => <View style={[styles.dot, activeIndex === index ? styles.dotActive : null]} />}
@@ -225,7 +174,7 @@ const styles = StyleSheet.create({
         height: 450,
     },
     textContainer: {
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        backgroundColor: colors.blackWithOpacity,
         paddingVertical: 20,
         paddingHorizontal: 10,
     },
