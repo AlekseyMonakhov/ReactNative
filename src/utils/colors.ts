@@ -4,6 +4,7 @@ const colors = {
     white: "#ffffff",
     gray: "#6c757d",
     red: "#d51b1b",
+    blackWithOpacity: "rgba(0, 0, 0, 0.5)",
 };
 
 export { colors };

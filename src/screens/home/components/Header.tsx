@@ -4,6 +4,10 @@ import { View, StyleSheet, TextInput, Modal, Pressable, Text } from 'react-nativ
 import Icon from 'react-native-vector-icons/FontAwesome';
 import StyledButton from '@/src/components/Button';
 import Input from '@/src/components/Input';
+import Carusel from './Carusel';
+
+
+
 
 type Props = {
     searchValue: string;
@@ -57,8 +61,10 @@ const Header: FC<Props> = ({ setSearchValue, searchValue }) => {
             <Modal
                 animationType="slide"
                 transparent={true}
+                statusBarTranslucent={true}
                 visible={isModalVisible}
-                onRequestClose={setModalVisibleHandler}>
+                onRequestClose={setModalVisibleHandler}
+            >
                 <View style={styles.centeredView}
                     onTouchStart={setModalVisibleHandler}
                 >
@@ -66,7 +72,10 @@ const Header: FC<Props> = ({ setSearchValue, searchValue }) => {
                         style={styles.modalView}
                         onTouchStart={(e) => e.stopPropagation()}
                     >
-                        <Text style={styles.modalText}>Hello World!</Text>
+                        <Text style={styles.modalText}>Sale</Text>
+
+                        <Carusel />
+
                         <StyledButton
                             onPress={setModalVisibleHandler}
                         >
@@ -109,15 +118,16 @@ const styles = StyleSheet.create({
 
     centeredView: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        justifyContent: 'flex-end',
+        padding: 20,
+        backgroundColor: 'rgba(67, 33, 33, 0.5)',
     },
     modalView: {
+        gap: 20,
+        maxHeight: '90%',
         backgroundColor: 'white',
         borderRadius: 20,
         padding: 35,
-        alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
@@ -134,6 +144,8 @@ const styles = StyleSheet.create({
     },
     modalText: {
         marginBottom: 15,
-        textAlign: 'center',
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: colors.red,
     },
 })
