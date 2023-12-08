@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator, StyleSheet, FlatList, SafeAreaView } from 'react-native'
+import { View, ActivityIndicator, StyleSheet, FlatList, SafeAreaView } from 'react-native'
 import useSWR from 'swr'
 
 import Item from '../components/Item';

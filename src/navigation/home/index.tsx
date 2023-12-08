@@ -5,7 +5,8 @@ import { HomeStackParamList, SettingStackParamList } from "@/types";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SettingsScreen from "@/src/screens/home/screens/SettingsScreen";
 import ModalScreen from "@/src/screens/home/screens/ModalScreen";
-
+import Icon from "react-native-vector-icons/FontAwesome";
+import { colors } from "@/src/utils/colors";
 
 const HomeStack = () => {
     const HomeStackNav = createNativeStackNavigator<HomeStackParamList>();
@@ -56,8 +57,28 @@ const HomeTabs = () => {
     const HomeTabsNav = createBottomTabNavigator();
     return (
         <HomeTabsNav.Navigator screenOptions={{ headerShown: false }}>
-            <HomeTabsNav.Screen name="Home" component={HomeStack} />
-            <HomeTabsNav.Screen name="Settings" component={SettingsStack} />
+
+            <HomeTabsNav.Screen
+                name="Home"
+                component={HomeStack}
+                options={{
+                    tabBarIcon({ color, size, focused }) {
+                        return <Icon name='home' size={size} color={focused ? colors.blue : colors.blackWithOpacity} />
+                    },
+                }}
+            />
+
+            <HomeTabsNav.Screen
+                name="Settings"
+                component={SettingsStack}
+                options={{
+                    tabBarIcon({ color, size, focused }) {
+                        console.log(color, size, focused);
+
+                        return <Icon name='cog' size={size} color={focused ? colors.blue : colors.blackWithOpacity} />
+                    },
+                }}
+            />
         </HomeTabsNav.Navigator>
     )
 }
