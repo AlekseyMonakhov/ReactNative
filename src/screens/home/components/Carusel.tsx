@@ -56,7 +56,9 @@ const data = [
 
 
 
-const { width } = Dimensions.get('screen');
+const { width } = Dimensions.get('window');
+
+
 
 
 const Item: FC<typeof data[0]> = memo(({ title, description, image }) => {
@@ -97,11 +99,10 @@ const Carusel = () => {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const listRef = useRef<FlatList>(null);
-    const timerRef = useRef<NodeJS.Timeout | null>(null);
 
 
     useEffect(() => {
-        timerRef.current = setInterval(() => {
+        const timerRef = setInterval(() => {
             if (listRef.current) {
                 listRef.current.scrollToIndex({
                     index: activeIndex === data.length - 1 ? 0 : activeIndex + 1,
@@ -112,15 +113,11 @@ const Carusel = () => {
 
 
         return () => {
-            if (timerRef.current) {
-
-                clearInterval(timerRef.current);
+            if (timerRef) {
+                clearInterval(timerRef);
             }
         }
     }, [activeIndex])
-
-
-
 
     const onScrollHandler = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
         const slideSize = event.nativeEvent.layoutMeasurement.width;
@@ -128,11 +125,6 @@ const Carusel = () => {
 
         setActiveIndex(Math.round(index));
     }, [])
-
-
-
-
-
 
     return (
         <View>

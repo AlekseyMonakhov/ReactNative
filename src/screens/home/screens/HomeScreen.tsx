@@ -2,26 +2,44 @@ import { View, Text, ActivityIndicator, StyleSheet, FlatList, SafeAreaView } fro
 import useSWR from 'swr'
 
 import Item from '../components/Item';
-import { IItem } from '@/types';
+import { IItem, HomeStackParamList } from '@/types';
 import { colors } from '@/src/utils/colors';
 import Header from '../components/Header';
-import { useState, useCallback, useTransition } from 'react';
+import { useState, useCallback, useTransition, FC } from 'react';
 import Empty from '../components/Empty';
 import { RefreshControl } from 'react-native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-const HomeScreen = () => {
+
+
+type Props = NativeStackScreenProps<HomeStackParamList, 'HomeScreen'>;
+
+const HomeScreen: FC<Props> = ({ navigation, route }) => {
+    console.log(navigation, route);
+
     const [isPending, startTransition] = useTransition()
 
     const [searchValue, setSearchValue] = useState('');
     const [refreshing, setRefreshing] = useState(false);
 
-    const { data, isLoading, mutate } = useSWR<IItem[]>(
+    const { data = [], isLoading, mutate } = useSWR<IItem[]>(
         'http://192.168.0.4:3001/items',
         (url: string) => fetch(url).then((res) => res.json()),
         {
             revalidateIfStale: true,
+            fallbackData: [],
         }
     )
+
+
+    const navigateToPizzaScreen = useCallback((item: IItem) => {
+        navigation.navigate('PizzaScreen', item)
+    }, [])
+
+
+    const navigateToModalScreen = useCallback(() => {
+        navigation.navigate('ModalScreen')
+    }, [])
 
     const setSearchValueHandler = useCallback((value: string) => {
         startTransition(() => {
@@ -29,18 +47,6 @@ const HomeScreen = () => {
         })
     }, [])
 
-
-    if (isLoading || isPending || !data) {
-        return (
-            <View style={styles.centered}>
-                <ActivityIndicator size={'large'} color={colors.blue} />
-            </View>
-        )
-    }
-
-    const filteredData = data.filter((item) => {
-        return item.title.toLowerCase().includes(searchValue.toLowerCase())
-    })
 
 
     const onRefreshHandler = useCallback(() => {
@@ -66,8 +72,6 @@ const HomeScreen = () => {
     }, [data])
 
     const onEndReachedHandler = useCallback(() => {
-       
-
         mutate([...data,
         {
             "title": "Four Cheese Pizza 12",
@@ -122,6 +126,22 @@ const HomeScreen = () => {
 
     }, [data])
 
+
+    if (isLoading || isPending) {
+        return (
+            <View style={styles.centered}>
+                <ActivityIndicator size={'large'} color={colors.blue} />
+            </View>
+        )
+    }
+
+    const filteredData = data?.filter((item) => {
+        return item.title.toLowerCase().includes(searchValue.toLowerCase())
+    })
+
+
+
+
     return (
         <SafeAreaView
             style={styles.container}
@@ -129,11 +149,12 @@ const HomeScreen = () => {
             <Header
                 searchValue={searchValue}
                 setSearchValue={setSearchValueHandler}
+                navigateToModalScreen={navigateToModalScreen}
             />
 
             <FlatList
                 data={filteredData}
-                renderItem={({ item }) => <Item item={item} />}
+                renderItem={({ item }) => <Item item={item} navigateToPizzaScreen={navigateToPizzaScreen} />}
                 keyExtractor={(item) => item.id.toString()}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={Empty}
@@ -156,7 +177,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        paddingTop: 50,
+        paddingTop: 15,
         paddingHorizontal: 5
     },
     centered: {

@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react'
+import React, { FC, Ref, forwardRef, memo, useImperativeHandle } from 'react'
 
 import { View, StyleSheet, TextInput, Pressable } from 'react-native'
 import { colors } from '@/src/utils/colors';
@@ -7,10 +7,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 type Props = {
     searchValue: string;
     setSearchValue: (value: string) => void;
-
 }
 
-const Input: FC<Props> = ({ searchValue, setSearchValue }) => {
+
+
+const Input = forwardRef<Partial<TextInput>, Props>(({ searchValue, setSearchValue }, ref) => {
+
+    const inputRef = React.useRef<TextInput>(null);
+
+    useImperativeHandle(ref, () => ({ focus: () => inputRef.current?.focus() }));
 
     const clearSearchValueHandler = () => {
         setSearchValue('')
@@ -24,6 +29,7 @@ const Input: FC<Props> = ({ searchValue, setSearchValue }) => {
                 onChangeText={(text) => setSearchValue(text)}
                 value={searchValue}
                 inputMode='search'
+                ref={inputRef}
             />
 
             {
@@ -43,7 +49,7 @@ const Input: FC<Props> = ({ searchValue, setSearchValue }) => {
             }
         </View>
     )
-}
+})
 
 
 export default memo(Input)
