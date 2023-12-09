@@ -1,4 +1,4 @@
-import React, { FC, Ref, forwardRef, memo, useImperativeHandle } from 'react'
+import React, { forwardRef, memo, useImperativeHandle } from 'react'
 
 import { View, StyleSheet, TextInput, Pressable } from 'react-native'
 import { colors } from '@/src/utils/colors';
@@ -15,7 +15,7 @@ const Input = forwardRef<Partial<TextInput>, Props>(({ searchValue, setSearchVal
 
     const inputRef = React.useRef<TextInput>(null);
 
-    useImperativeHandle(ref, () => ({ focus: () => inputRef.current?.focus() }));
+    useImperativeHandle(ref, () => ({ focus: () => inputRef.current?.focus() }), [inputRef.current]);
 
     const clearSearchValueHandler = () => {
         setSearchValue('')

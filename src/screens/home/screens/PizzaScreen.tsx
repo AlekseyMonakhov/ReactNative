@@ -14,7 +14,7 @@ const PizzaScreen: FC<Props> = ({ navigation, route }) => {
 
 
 
-    console.log(route.params.image);
+
 
     const addToCart = useCallback(() => {
         console.log('Item ' + route.params.id + ' added to cart');

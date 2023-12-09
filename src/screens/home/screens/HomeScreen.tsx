@@ -15,7 +15,6 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 type Props = NativeStackScreenProps<HomeStackParamList, 'HomeScreen'>;
 
 const HomeScreen: FC<Props> = ({ navigation, route }) => {
-    console.log(navigation, route);
 
     const [isPending, startTransition] = useTransition()
 

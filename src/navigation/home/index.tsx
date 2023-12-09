@@ -7,6 +7,22 @@ import SettingsScreen from "@/src/screens/home/screens/SettingsScreen";
 import ModalScreen from "@/src/screens/home/screens/ModalScreen";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { colors } from "@/src/utils/colors";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import DrawerComponent from "@/src/screens/home/components/Drawer";
+
+
+
+const HomeScreenWithDrawer = () => {
+    const Drawer = createDrawerNavigator<HomeStackParamList>();
+    return (
+        <Drawer.Navigator
+            screenOptions={{ headerShown: false }}
+            drawerContent={DrawerComponent}
+        >
+            <Drawer.Screen name="HomeScreen" component={HomeScreen} />
+        </Drawer.Navigator>
+    );
+}
 
 const HomeStack = () => {
     const HomeStackNav = createNativeStackNavigator<HomeStackParamList>();
@@ -16,7 +32,11 @@ const HomeStack = () => {
                 animation: "slide_from_right",
             }}
         >
-            <HomeStackNav.Screen name="HomeScreen" component={HomeScreen} />
+            <HomeStackNav.Screen
+                name="HomeDrawer"
+                component={HomeScreenWithDrawer}
+                options={{ headerTitle: 'Home' }}
+            />
 
             <HomeStackNav.Screen
                 name="PizzaScreen"
@@ -40,24 +60,31 @@ const HomeStack = () => {
 
 
 const SettingsStack = () => {
+
     const SettingsStackNav = createNativeStackNavigator<SettingStackParamList>();
     return (
+
         <SettingsStackNav.Navigator
             screenOptions={{
                 animation: "slide_from_right",
             }}
         >
-            <SettingsStackNav.Screen name="SettingScreen" component={SettingsScreen} />
+            <SettingsStackNav.Screen
 
+                name="SettingScreen"
+                component={SettingsScreen}
+            />
         </SettingsStackNav.Navigator>
     )
 }
 
 const HomeTabs = () => {
+
+
     const HomeTabsNav = createBottomTabNavigator();
+
     return (
         <HomeTabsNav.Navigator screenOptions={{ headerShown: false }}>
-
             <HomeTabsNav.Screen
                 name="Home"
                 component={HomeStack}
@@ -73,7 +100,7 @@ const HomeTabs = () => {
                 component={SettingsStack}
                 options={{
                     tabBarIcon({ color, size, focused }) {
-                        console.log(color, size, focused);
+
 
                         return <Icon name='cog' size={size} color={focused ? colors.blue : colors.blackWithOpacity} />
                     },
@@ -82,6 +109,9 @@ const HomeTabs = () => {
         </HomeTabsNav.Navigator>
     )
 }
+
+
+
 
 
 export default HomeTabs;

@@ -10,8 +10,9 @@ export interface IItem {
 
 export type HomeStackParamList = {
     HomeScreen: undefined;
-    PizzaScreen: IItem;
     ModalScreen: undefined;
+    HomeDrawer: undefined;
+    PizzaScreen: IItem;
 };
 
 export type SettingStackParamList = {
