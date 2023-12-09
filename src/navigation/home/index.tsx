@@ -16,10 +16,18 @@ const HomeScreenWithDrawer = () => {
     const Drawer = createDrawerNavigator<HomeStackParamList>();
     return (
         <Drawer.Navigator
-            screenOptions={{ headerShown: false }}
+            screenOptions={{
+                headerShown: false,
+            }}
             drawerContent={DrawerComponent}
+
+
         >
-            <Drawer.Screen name="HomeScreen" component={HomeScreen} />
+            <Drawer.Screen
+                name="HomeScreen"
+                component={HomeScreen}
+
+            />
         </Drawer.Navigator>
     );
 }
@@ -61,9 +69,10 @@ const HomeStack = () => {
 
 const SettingsStack = () => {
 
+
+
     const SettingsStackNav = createNativeStackNavigator<SettingStackParamList>();
     return (
-
         <SettingsStackNav.Navigator
             screenOptions={{
                 animation: "slide_from_right",
@@ -81,8 +90,8 @@ const SettingsStack = () => {
 const HomeTabs = () => {
 
 
-    const HomeTabsNav = createBottomTabNavigator();
 
+    const HomeTabsNav = createBottomTabNavigator();
     return (
         <HomeTabsNav.Navigator screenOptions={{ headerShown: false }}>
             <HomeTabsNav.Screen
