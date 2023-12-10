@@ -4,12 +4,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import StyledButton from '@/src/components/Button';
 import { IItem } from '@/types';
 import { colors } from '@/src/utils/colors';
+import AddToCartBtn from './AddToCartBtn';
+import AddToFavoriteBtn from './AddToFavoriteBtn';
 
 type Props = {
     item: IItem;
+    navigateToPizzaScreen: (item: IItem) => void;
 }
 
-const Item: FC<Props> = ({ item }) => {
+const Item: FC<Props> = ({ item, navigateToPizzaScreen }) => {
 
     const addToFavorite = () => {
         console.log('Item ' + item.id + ' added to favorite');
@@ -23,17 +26,20 @@ const Item: FC<Props> = ({ item }) => {
     return (
         <View style={[styles.card, styles.elevation]}>
             <View style={styles.imageContainer}>
-                {
-                    item.isNew ? (
-                        <Text style={styles.newLabel}>
-                            New
-                        </Text>
-                    )
-                        : null
-                }
-                <Image
-                    style={styles.image}
-                    source={{ uri: item.image }} />
+                <TouchableOpacity onPress={navigateToPizzaScreen.bind(null, item)}>
+                    {
+                        item.isNew ? (
+                            <Text style={styles.newLabel}>
+                                New
+                            </Text>
+                        )
+                            : null
+                    }
+                    <Image
+                        style={styles.image}
+                        source={{ uri: item.image }}
+                    />
+                </TouchableOpacity>
             </View>
             <View style={styles.infoContainer}>
                 <Text
@@ -61,30 +67,9 @@ const Item: FC<Props> = ({ item }) => {
                     {item.description}
                 </Text>
 
-                <TouchableOpacity
-                    style={styles.addToFavoriteBtn}
-                    onPress={addToFavorite}
-                >
-                    <Icon
-                        name="heart"
-                        size={24}
-                        color={colors.purple}
-                    />
-                </TouchableOpacity>
 
-                <StyledButton
-                    onPress={addToCart}
-                >
-                    <Icon
-                        name="cart-plus"
-                        color={colors.white}
-                        size={24}
-                    />
-                    <Text style={styles.addToCartText}>Add to cart</Text>
-
-                </StyledButton>
-
-
+                <AddToCartBtn addToCart={addToCart} />
+                <AddToFavoriteBtn addToFavotie={addToFavorite} />
             </View>
         </View>
     )
@@ -164,15 +149,5 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: colors.gray,
         textDecorationLine: 'line-through',
-    },
-    addToFavoriteBtn: {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-    },
-    addToCartText: {
-        color: colors.white,
-        fontSize: 16,
-        fontWeight: 'bold',
     }
 })

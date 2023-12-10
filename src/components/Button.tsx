@@ -13,7 +13,7 @@ const StyledButton: FC<PropsWithChildren<Props>> = ({ onPress, children }) => {
         <Pressable
             style={styles.btn}
             onPress={onPress}
-            android_ripple={{ color: 'rgba(255, 255, 255, 0.3)', borderless: false, radius: 100, foreground: false }}
+            android_ripple={{ color: 'rgba(255, 255, 255, 0.3)', borderless: false, radius: -10, foreground: false }}
         >
             {children}
 
