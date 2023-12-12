@@ -6,6 +6,7 @@ const colors = {
     red: "#d51b1b",
     black: "#000000",
     blackWithOpacity: "rgba(0, 0, 0, 0.5)",
+    blurBackground: "rgba(0, 0, 0, 0.75)",
 };
 
 export { colors };
