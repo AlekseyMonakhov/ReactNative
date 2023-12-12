@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         padding: 20,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+        backgroundColor: colors.blackWithOpacity,
     },
     modalView: {
         gap: 20,
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 20,
         padding: 35,
-        shadowColor: '#000',
+        shadowColor: colors.black,
         shadowOffset: {
             width: 0,
             height: 2,
