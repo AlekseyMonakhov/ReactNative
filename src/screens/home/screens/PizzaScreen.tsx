@@ -12,10 +12,6 @@ type Props = NativeStackScreenProps<HomeStackParamList, 'PizzaScreen'>;
 
 const PizzaScreen: FC<Props> = ({ navigation, route }) => {
 
-
-
-
-
     const addToCart = useCallback(() => {
         console.log('Item ' + route.params.id + ' added to cart');
     }, [])
@@ -43,9 +39,15 @@ const PizzaScreen: FC<Props> = ({ navigation, route }) => {
 
             </View>
 
-            <Text style={styles.newBage}>
-                {route.params.isNew ? 'New' : 'New'}
-            </Text>
+            {route.params.isNew ?
+                <Text style={styles.newBage}>
+                    New
+                </Text>
+
+                : null
+            }
+
+
 
 
             <View style={styles.contentContainer}>

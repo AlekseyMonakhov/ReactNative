@@ -20,8 +20,6 @@ const HomeScreenWithDrawer = () => {
                 headerShown: false,
             }}
             drawerContent={DrawerComponent}
-
-
         >
             <Drawer.Screen
                 name="HomeScreen"
@@ -68,9 +66,6 @@ const HomeStack = () => {
 
 
 const SettingsStack = () => {
-
-
-
     const SettingsStackNav = createNativeStackNavigator<SettingStackParamList>();
     return (
         <SettingsStackNav.Navigator
@@ -79,7 +74,6 @@ const SettingsStack = () => {
             }}
         >
             <SettingsStackNav.Screen
-
                 name="SettingScreen"
                 component={SettingsScreen}
             />
@@ -88,9 +82,6 @@ const SettingsStack = () => {
 }
 
 const HomeTabs = () => {
-
-
-
     const HomeTabsNav = createBottomTabNavigator();
     return (
         <HomeTabsNav.Navigator screenOptions={{ headerShown: false }}>
@@ -109,8 +100,6 @@ const HomeTabs = () => {
                 component={SettingsStack}
                 options={{
                     tabBarIcon({ color, size, focused }) {
-
-
                         return <Icon name='cog' size={size} color={focused ? colors.blue : colors.blackWithOpacity} />
                     },
                 }}
