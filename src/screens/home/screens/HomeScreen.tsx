@@ -156,7 +156,7 @@ const HomeScreen: FC<Props> = ({ navigation, route }) => {
                 renderItem={({ item }) => <Item item={item} navigateToPizzaScreen={navigateToPizzaScreen} />}
                 keyExtractor={(item) => item.id.toString()}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
-                ListEmptyComponent={Empty}
+                ListEmptyComponent={<Empty message='No item Found' />}
                 contentContainerStyle={{ paddingVertical: 20 }}
                 onEndReached={onEndReachedHandler}
                 refreshControl={

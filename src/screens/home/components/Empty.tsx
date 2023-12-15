@@ -1,11 +1,16 @@
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 
-const Empty = () => {
+type Props = {
+    message: string;
+}
+
+
+const Empty: FC<Props> = ({ message }) => {
     return (
         <View style={styles.centered}>
-            <Text>Nothing found</Text>
+            <Text>{message}</Text>
         </View>
     )
 }

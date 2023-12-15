@@ -6,6 +6,7 @@ import { IItem } from '@/types';
 import { colors } from '@/src/utils/colors';
 import AddToCartBtn from './AddToCartBtn';
 import AddToFavoriteBtn from './AddToFavoriteBtn';
+import { cartStore } from "@/src/store/cartStore"
 
 type Props = {
     item: IItem;
@@ -19,7 +20,7 @@ const Item: FC<Props> = ({ item, navigateToPizzaScreen }) => {
     }
 
     const addToCart = useCallback(() => {
-        console.log('Item ' + item.id + ' added to cart');
+        cartStore.addToCart(item)
     }, [])
 
     return (
