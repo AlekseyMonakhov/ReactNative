@@ -16,7 +16,6 @@ const Item: FC<Props> = ({ item, navigateToPizzaScreen }) => {
 
     const addToFavorite = () => {
         console.log('Item ' + item.id + ' added to favorite');
-
     }
 
     const addToCart = useCallback(() => {
