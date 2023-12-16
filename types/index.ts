@@ -8,6 +8,10 @@ export interface IItem {
     isNew: boolean;
 }
 
+export type ICartItem = {
+    quantity: number;
+} & IItem;
+
 export type HomeStackParamList = {
     HomeScreen: undefined;
     ModalScreen: undefined;
@@ -17,4 +21,8 @@ export type HomeStackParamList = {
 
 export type SettingStackParamList = {
     SettingScreen: undefined;
+};
+
+export type CartStackParamList = {
+    CartScreen: undefined;
 };

@@ -5,7 +5,7 @@ import { Text, View, Image, StyleSheet } from "react-native";
 import AddToCartBtn from "../components/AddToCartBtn";
 import AddToFavoriteBtn from "../components/AddToFavoriteBtn";
 import { colors } from "@/src/utils/colors";
-
+import { cartStore } from "@/src/store/cartStore"
 
 type Props = NativeStackScreenProps<HomeStackParamList, 'PizzaScreen'>;
 
@@ -13,7 +13,7 @@ type Props = NativeStackScreenProps<HomeStackParamList, 'PizzaScreen'>;
 const PizzaScreen: FC<Props> = ({ navigation, route }) => {
 
     const addToCart = useCallback(() => {
-        console.log('Item ' + route.params.id + ' added to cart');
+        cartStore.addToCart(route.params)
     }, [])
 
 
