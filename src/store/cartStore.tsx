@@ -8,12 +8,12 @@ class CartStore {
 
     constructor() {
         makeObservable(this, {
-            addToCart: action,
-            removeFromCart: action,
-            getItemById: action,
             totalItemsQuantity: computed,
             cartItemsIds: computed,
             totalPrice: computed,
+            addToCart: action,
+            removeFromCart: action,
+            getItemById: action,
             clearCart: action,
         });
     }

@@ -1,7 +1,7 @@
 import { View, StyleSheet, FlatList } from "react-native";
 import CartItem from '../components/CartItem';
 import { cartStore } from "@/src/store/cartStore"
-import Empty from '../components/Empty';
+import Empty from '@/src/components/Empty';
 import { observer } from 'mobx-react';
 import ListFooter from '../components/CartScreenFooter';
 

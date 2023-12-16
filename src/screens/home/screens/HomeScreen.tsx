@@ -6,7 +6,7 @@ import { IItem, HomeStackParamList } from '@/types';
 import { colors } from '@/src/utils/colors';
 import Header from '../components/Header';
 import { useState, useCallback, useTransition, FC } from 'react';
-import Empty from '../components/Empty';
+import Empty from '../../../components/Empty';
 import { RefreshControl } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 

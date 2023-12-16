@@ -4,8 +4,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import StyledButton from '@/src/components/Button';
 import { IItem } from '@/types';
 import { colors } from '@/src/utils/colors';
-import AddToCartBtn from './AddToCartBtn';
-import AddToFavoriteBtn from './AddToFavoriteBtn';
+import AddToCartBtn from '../../../components/AddToCartBtn';
+import AddToFavoriteBtn from '../../../components/AddToFavoriteBtn';
 import { cartStore } from "@/src/store/cartStore"
 
 type Props = {

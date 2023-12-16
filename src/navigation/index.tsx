@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import HomeTabs from "./home";
+import HomeTabs from "./homeTabs";
 
 
 const Navigator = () => {

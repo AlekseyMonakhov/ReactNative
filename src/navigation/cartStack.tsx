@@ -1,4 +1,4 @@
-import CartScreen from "@/src/screens/home/screens/CartScreen";
+import CartScreen from "@/src/screens/cart/screens/CartScreen";
 import { CartStackParamList } from "@/types";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
