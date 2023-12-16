@@ -2,8 +2,8 @@ import { HomeStackParamList } from "@/types";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FC, memo, useCallback } from "react";
 import { Text, View, Image, StyleSheet } from "react-native";
-import AddToCartBtn from "../components/AddToCartBtn";
-import AddToFavoriteBtn from "../components/AddToFavoriteBtn";
+import AddToCartBtn from "../../../components/AddToCartBtn";
+import AddToFavoriteBtn from "../../../components/AddToFavoriteBtn";
 import { colors } from "@/src/utils/colors";
 import { cartStore } from "@/src/store/cartStore"
 

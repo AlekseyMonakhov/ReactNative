@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { cartStore } from '@/src/store/cartStore';
 import StyledButton from '@/src/components/Button';
 import { colors } from '@/src/utils/colors';
-import AddToFavoriteBtn from './AddToFavoriteBtn';
+import AddToFavoriteBtn from '../../../components/AddToFavoriteBtn';
 
 
 type Props = {
