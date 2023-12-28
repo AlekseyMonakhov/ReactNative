@@ -20,7 +20,7 @@ const Item: FC<Props> = ({ item, navigateToPizzaScreen }) => {
     }
 
     const addToCart = useCallback(() => {
-        cartStore.addToCart(item)
+        cartStore.add(item)
     }, [])
 
     return (

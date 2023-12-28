@@ -13,7 +13,7 @@ type Props = NativeStackScreenProps<HomeStackParamList, 'PizzaScreen'>;
 const PizzaScreen: FC<Props> = ({ navigation, route }) => {
 
     const addToCart = useCallback(() => {
-        cartStore.addToCart(route.params)
+        cartStore.add(route.params)
     }, [])
 
 

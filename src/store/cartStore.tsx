@@ -1,79 +1,61 @@
 import { ICartItem, IItem } from "@/types";
 import { action, computed, makeObservable, observable } from "mobx";
+import BaseStore from "./baseStore";
 
 
 
-class CartStore {
-    private cart = observable.map<string, ICartItem>();
+class CartStore extends BaseStore<ICartItem> {
 
     constructor() {
+        super();
         makeObservable(this, {
-            totalItemsQuantity: computed,
-            cartItemsIds: computed,
+            totalQuantity: computed,
             totalPrice: computed,
-            addToCart: action,
-            removeFromCart: action,
-            getItemById: action,
-            clearCart: action,
+            add: action,
+            remove: action,
         });
     }
 
 
-    get totalItemsQuantity() {
-        return Array.from(this.cart.values()).reduce(
+    get totalQuantity() {
+        return Array.from(this.store.values()).reduce(
             (acc, item) => acc + item.quantity,
             0
         );
     }
 
-    get cartItemsIds() {
-        return Array.from(this.cart.keys());
-    }
-
     get totalPrice() {
-        return Array.from(this.cart.values()).reduce(
+        return Array.from(this.store.values()).reduce(
             (acc, item) => acc + item.newPrice * item.quantity,
             0
         );
     }
 
-    getItemById(id: string): ICartItem {
 
-        const item = this.cart.get(id);
-
-        if (!item) throw new Error("Item not found in cart");
-
-        return item;
-    }
-
-    addToCart(item: IItem): number {
-        const cartItem = this.cart.get(item.id);
+    add(item: IItem): number {
+        const cartItem = this.store.get(item.id);
 
         if (cartItem) {
             cartItem.quantity++;
         } else {
-            this.cart.set(item.id, { ...item, quantity: 1 });
+            this.store.set(item.id, { ...item, quantity: 1 });
         }
 
-        return this.totalItemsQuantity;
+        return this.totalQuantity;
     }
 
-    removeFromCart(itemId: string) {
-        const cartItem = this.cart.get(itemId);
+    remove(itemId: string) {
+        const cartItem = this.store.get(itemId);
 
         if (!cartItem) throw new Error("Item not found in cart");
 
         if (cartItem.quantity === 1) {
-            this.cart.delete(itemId);
+            this.store.delete(itemId);
         } else {
             cartItem.quantity--;
         }
 
-        return this.totalItemsQuantity;
-    }
-
-    clearCart() {
-        this.cart.clear();
+        return this.totalQuantity;
     }
 }
 

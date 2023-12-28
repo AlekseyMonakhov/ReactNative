@@ -14,15 +14,15 @@ type Props = {
 
 const CartItem: FC<Props> = ({ itemId }) => {
 
-    const item = cartStore.getItemById(itemId);
+    const item = cartStore.getById(itemId);
     console.log('rendering cart item', itemId);
 
     const removeFromCart = () => {
-        cartStore.removeFromCart(itemId);
+        cartStore.remove(itemId);
     }
 
     const addToCart = () => {
-        cartStore.addToCart(item);
+        cartStore.add(item);
     }
 
     const addToFavorite = () => {

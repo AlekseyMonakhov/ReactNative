@@ -10,7 +10,9 @@ const ListFooter = () => {
     const totalPrice = cartStore.totalPrice;
 
     const clearCart = () => {
-        cartStore.clearCart();
+        console.log('clear cart');
+        
+        cartStore.clear();
     }
 
     if (!totalPrice) {

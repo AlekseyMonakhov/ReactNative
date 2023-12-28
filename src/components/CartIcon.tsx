@@ -12,7 +12,7 @@ type Props = {
 }
 
 const CartIcon: FC<Props> = ({ isFocused, size }) => {
-    const cartItemsCount = cartStore.totalItemsQuantity;
+    const cartItemsCount = cartStore.totalQuantity;
 
 
     if (!cartItemsCount) {

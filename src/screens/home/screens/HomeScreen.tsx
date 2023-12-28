@@ -22,7 +22,7 @@ const HomeScreen: FC<Props> = ({ navigation, route }) => {
     const [refreshing, setRefreshing] = useState(false);
 
     const { data = [], isLoading, mutate } = useSWR<IItem[]>(
-        'http://192.168.0.4:3001/items',
+        process.env.EXPO_PUBLIC_API_URL + '/items',
         (url: string) => fetch(url).then((res) => res.json()),
         {
             revalidateIfStale: true,
