@@ -17,9 +17,7 @@ const PizzaScreen: FC<Props> = ({ navigation, route }) => {
     }, [])
 
 
-    const addToFavorite = () => {
-        console.log('Item ' + route.params.id + ' added to favorite');
-    }
+  
 
     return (
         <View style={styles.container}>
@@ -31,7 +29,7 @@ const PizzaScreen: FC<Props> = ({ navigation, route }) => {
                 />
 
                 <AddToFavoriteBtn
-                    addToFavotie={addToFavorite}
+                    item={route.params}
                     top={25}
                     right={25}
                     bgActive

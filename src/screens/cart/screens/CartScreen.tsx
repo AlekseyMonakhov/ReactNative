@@ -8,7 +8,7 @@ import ListFooter from '../components/CartScreenFooter';
 
 const CartScreen = () => {
     const cartItemsIds = cartStore.getIds;
-    console.log('render CartScreen', cartItemsIds);
+
 
     return (
         <View style={styles.container}>

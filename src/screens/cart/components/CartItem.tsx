@@ -15,7 +15,6 @@ type Props = {
 const CartItem: FC<Props> = ({ itemId }) => {
 
     const item = cartStore.getById(itemId);
-    console.log('rendering cart item', itemId);
 
     const removeFromCart = () => {
         cartStore.remove(itemId);
@@ -25,9 +24,7 @@ const CartItem: FC<Props> = ({ itemId }) => {
         cartStore.add(item);
     }
 
-    const addToFavorite = () => {
-        console.log('add to favorite');
-    }
+
 
 
     return (
@@ -36,7 +33,7 @@ const CartItem: FC<Props> = ({ itemId }) => {
             <AddToFavoriteBtn
                 top={10}
                 right={10}
-                addToFavotie={addToFavorite}
+                item={item}
             />
 
             <Image

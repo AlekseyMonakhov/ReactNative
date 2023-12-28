@@ -5,7 +5,7 @@ import { colors } from '../utils/colors';
 
 const AppWrapper: FC<PropsWithChildren> = ({ children }) => {
     const isAppActive = useAppState();
-    console.log('isAppActive', isAppActive);
+
 
     return (
         <View style={styles.container}>

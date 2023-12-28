@@ -15,10 +15,6 @@ type Props = {
 
 const Item: FC<Props> = ({ item, navigateToPizzaScreen }) => {
 
-    const addToFavorite = () => {
-        console.log('Item ' + item.id + ' added to favorite');
-    }
-
     const addToCart = useCallback(() => {
         cartStore.add(item)
     }, [])
@@ -69,7 +65,7 @@ const Item: FC<Props> = ({ item, navigateToPizzaScreen }) => {
 
 
                 <AddToCartBtn addToCart={addToCart} />
-                <AddToFavoriteBtn addToFavotie={addToFavorite} />
+                <AddToFavoriteBtn item={item} />
             </View>
         </View>
     )

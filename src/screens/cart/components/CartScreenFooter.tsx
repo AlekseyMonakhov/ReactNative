@@ -10,8 +10,7 @@ const ListFooter = () => {
     const totalPrice = cartStore.totalPrice;
 
     const clearCart = () => {
-        console.log('clear cart');
-        
+
         cartStore.clear();
     }
 

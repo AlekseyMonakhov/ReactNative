@@ -25,10 +25,12 @@ class CartStore extends BaseStore<ICartItem> {
     }
 
     get totalPrice() {
-        return Array.from(this.store.values()).reduce(
+        const price = Array.from(this.store.values()).reduce(
             (acc, item) => acc + item.newPrice * item.quantity,
             0
         );
+
+        return Math.floor(price * 100) / 100;
     }
 
 

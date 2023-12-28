@@ -22,7 +22,6 @@ export default abstract class BaseStore<T extends IItem> {
     abstract remove(itemId: string): number
 
     get getIds() {
-        console.log(this.store);
 
         return Array.from(this.store.keys());
     }
