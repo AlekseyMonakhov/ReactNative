@@ -33,7 +33,7 @@ const CartItem: FC<Props> = ({ itemId }) => {
             <AddToFavoriteBtn
                 top={10}
                 right={10}
-                item={item}
+                itemId={itemId}
             />
 
             <Image

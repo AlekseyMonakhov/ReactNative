@@ -1,31 +1,26 @@
 import { colors } from "@/src/utils/colors"
-import { FC, memo } from "react"
+import { FC } from "react"
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity, StyleSheet } from "react-native";
-import { IItem } from "@/types";
 import { favoriteStore } from "@/src/store/favoriteStore";
 import { observer } from "mobx-react"
 
 type Props = {
-    item: IItem;
+    itemId: string;
     top?: number;
     right?: number;
     bgActive?: boolean;
 }
 
 
-const AddToFavoriteBtn: FC<Props> = ({ item, top = 0, right = 0, bgActive }) => {
+const AddToFavoriteBtn: FC<Props> = ({ itemId, top = 0, right = 0, bgActive }) => {
 
 
-    const isInFavorite = favoriteStore.getIds.includes(item.id);
+    const isInFavorite = favoriteStore.getIds.includes(itemId);
 
 
     const addToFavotie = () => {
-        if (isInFavorite) {
-            favoriteStore.remove(item.id);
-        } else {
-            favoriteStore.add(item);
-        }
+        favoriteStore.tooggle(itemId);
     }
 
     return (

@@ -1,20 +1,31 @@
 import { ICartItem, IItem } from "@/types";
 import { action, computed, makeObservable, observable } from "mobx";
-import BaseStore from "./baseStore";
 
 
 
-class CartStore extends BaseStore<ICartItem> {
+
+class CartStore {
+
+    private store = observable.map<string, ICartItem>();
 
     constructor() {
-        super();
         makeObservable(this, {
+            getIds: computed,
             totalQuantity: computed,
             totalPrice: computed,
+            getById: action,
+            clear: action,
             add: action,
             remove: action,
         });
     }
+
+    get getIds() {
+
+        return Array.from(this.store.keys());
+    }
+
+
 
 
     get totalQuantity() {
@@ -58,6 +69,20 @@ class CartStore extends BaseStore<ICartItem> {
         }
 
         return this.totalQuantity;
+    }
+
+
+    getById(id: string) {
+
+        const item = this.store.get(id);
+
+        if (!item) throw new Error("Item not found");
+
+        return item;
+    }
+
+    clear() {
+        this.store.clear();
     }
 }
 

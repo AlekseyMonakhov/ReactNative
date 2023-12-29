@@ -65,7 +65,7 @@ const Item: FC<Props> = ({ item, navigateToPizzaScreen }) => {
 
 
                 <AddToCartBtn addToCart={addToCart} />
-                <AddToFavoriteBtn item={item} />
+                <AddToFavoriteBtn itemId={item.id} />
             </View>
         </View>
     )

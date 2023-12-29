@@ -1,34 +1,37 @@
 
 
-import { IItem } from "@/types";
-import { action, computed, makeObservable } from "mobx";
-import BaseStore from "./baseStore";
+import { action, computed, makeObservable, observable } from "mobx";
 
 
 
-class FavoriteStore extends BaseStore<IItem> {
+class FavoriteStore {
+    private store = observable.set<string>();
 
     constructor() {
-        super();
         makeObservable(this, {
-            totalQuantity: computed,
-            add: action,
-            remove: action,
+            getIds: computed,
+            clear: action,
+            tooggle: action,
         });
     }
 
-    get totalQuantity() {
-        return this.getIds.length;
+    get getIds() {
+        return Array.from(this.store);
     }
 
-    add(item: IItem): number {
-        this.store.set(item.id, item);
-        return this.totalQuantity;
+
+    tooggle(id: string) {
+
+        if (this.store.has(id)) {
+            this.store.delete(id);
+        } else {
+            this.store.add(id);
+        }
     }
 
-    remove(itemId: string): number {
-        this.store.delete(itemId);
-        return this.totalQuantity;
+
+    clear() {
+        this.store.clear();
     }
 }
 
