@@ -1,19 +1,24 @@
 import { FC, memo, useCallback } from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome';
-import StyledButton from '@/src/components/Button';
+import Animated, { Extrapolate, FadeIn, FadeOut, SharedValue, SlideInLeft, SlideOutLeft, interpolate, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { IItem } from '@/types';
 import { colors } from '@/src/utils/colors';
 import AddToCartBtn from '../../../components/AddToCartBtn';
 import AddToFavoriteBtn from '../../../components/AddToFavoriteBtn';
 import { cartStore } from "@/src/store/cartStore"
 
+
 type Props = {
     item: IItem;
     navigateToPizzaScreen: (item: IItem) => void;
 }
 
+const ITEM_HEIGHT = 200;
+
+
 const Item: FC<Props> = ({ item, navigateToPizzaScreen }) => {
+
+
 
     const addToCart = useCallback(() => {
         cartStore.add(item)
@@ -21,10 +26,10 @@ const Item: FC<Props> = ({ item, navigateToPizzaScreen }) => {
 
 
 
-
-
     return (
-        <View style={[styles.card, styles.elevation]}>
+        <View
+            style={[styles.card, styles.elevation]}
+        >
             <View style={styles.imageContainer}>
                 <TouchableOpacity onPress={navigateToPizzaScreen.bind(null, item)}>
                     {
@@ -83,7 +88,7 @@ const styles = StyleSheet.create({
         padding: 12,
         backgroundColor: colors.white,
         flexDirection: 'row',
-        height: 200,
+        height: ITEM_HEIGHT,
         borderWidth: 1,
         borderRadius: 30,
         alignItems: 'center',

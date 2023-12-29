@@ -1,5 +1,4 @@
 import { View, ActivityIndicator, StyleSheet, SafeAreaView } from 'react-native'
-import useSWR from 'swr'
 import Animated, { useSharedValue, useAnimatedScrollHandler } from 'react-native-reanimated';
 
 import Item from '../components/Item';
@@ -10,15 +9,15 @@ import { useState, useCallback, useTransition, FC } from 'react';
 import Empty from '../../../components/Empty';
 import { RefreshControl } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-
+import useSWRInfinite from "swr/infinite";
+import { fetcher } from '@/src/api';
+import { getKey } from '@/src/utils/helpers';
 
 
 type Props = NativeStackScreenProps<HomeStackParamList, 'HomeScreen'>;
 
 
-
 const HomeScreen: FC<Props> = ({ navigation, route }) => {
-    const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 
     const [isPending, startTransition] = useTransition()
 
@@ -33,11 +32,11 @@ const HomeScreen: FC<Props> = ({ navigation, route }) => {
         },
     });
 
-    const { data = [], isLoading, mutate } = useSWR<IItem[]>(
-        apiUrl + '/items',
-        (url: string) => fetch(url).then((res) => res.json()),
+    const { data = [], isLoading, mutate, setSize, size, isValidating } = useSWRInfinite<IItem[]>(
+        getKey,
+        fetcher,
         {
-            revalidateIfStale: true,
+            initialSize: 1,
             fallbackData: [],
         }
     )
@@ -63,17 +62,15 @@ const HomeScreen: FC<Props> = ({ navigation, route }) => {
         setRefreshing(true);
 
         setTimeout(() => {
-            mutate([...data,
-            {
-                "title": "Four Cheese Pizza 12",
+            mutate(data.concat([{
+                "title": "Four Cheese Pizza 122222",
                 "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
                 "newPrice": 9.99,
                 "oldPrice": 12.99,
                 "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
-                "id": (data!.length + 1).toString(),
+                "id": '1000000',
                 "isNew": true
-            },
-            ], false);
+            },]), false);
 
 
 
@@ -82,60 +79,8 @@ const HomeScreen: FC<Props> = ({ navigation, route }) => {
     }, [data])
 
     const onEndReachedHandler = useCallback(() => {
-
-        mutate([...data,
-        {
-            "title": "Four Cheese Pizza 12",
-            "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
-            "newPrice": 9.99,
-            "oldPrice": 12.99,
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
-            "id": Math.random().toString(),
-            "isNew": true
-        },
-        {
-            "title": "Four Cheese Pizza 12",
-            "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
-            "newPrice": 9.99,
-            "oldPrice": 12.99,
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
-            "id": Math.random().toString(),
-            "isNew": true
-        },
-        {
-            "title": "Four Cheese Pizza 12",
-            "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
-            "newPrice": 9.99,
-            "oldPrice": 12.99,
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
-            "id": Math.random().toString(),
-            "isNew": true
-        },
-        {
-            "title": "Four Cheese Pizza 12",
-            "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
-            "newPrice": 9.99,
-            "oldPrice": 12.99,
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
-            "id": Math.random().toString(),
-            "isNew": true
-        },
-        {
-            "title": "Four Cheese Pizza 12",
-            "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
-            "newPrice": 9.99,
-            "oldPrice": 12.99,
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
-            "id": Math.random().toString(),
-            "isNew": true
-        },
-        ], {
-            revalidate: false
-        });
-
-
-
-    }, [data])
+        setSize((prev) => prev + 1)
+    }, [data, size])
 
 
     if (isLoading || isPending) {
@@ -146,7 +91,7 @@ const HomeScreen: FC<Props> = ({ navigation, route }) => {
         )
     }
 
-    const filteredData = data?.filter((item) => {
+    const filteredData = data?.flat().filter((item) => {
         return item.title.toLowerCase().includes(searchValue.toLowerCase())
     })
 
@@ -168,11 +113,17 @@ const HomeScreen: FC<Props> = ({ navigation, route }) => {
                 data={filteredData}
                 onScroll={scrollHandler}
 
-                renderItem={({ item }) => <Item item={item} navigateToPizzaScreen={navigateToPizzaScreen} />}
+                renderItem={({ item }) => (
+                    <Item
+                        item={item}
+                        navigateToPizzaScreen={navigateToPizzaScreen}
+                    />
+                )}
                 keyExtractor={(item) => item.id.toString()}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={<Empty message='No item Found' />}
                 contentContainerStyle={{ paddingVertical: 20 }}
+                onEndReachedThreshold={0.5}
                 onEndReached={onEndReachedHandler}
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefreshHandler} />
