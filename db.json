@@ -91,6 +91,14 @@
             "isNew": true
         }
     ],
-    "cart": [],
-    "favorites": []
+    "users": [
+        {
+            "id": 1,
+            "name": "John Doe",
+            "email": "some@gmail.com",
+            "address": "Some Street 123",
+            "cart": {},
+            "favorites": {}
+        }
+    ]
 }

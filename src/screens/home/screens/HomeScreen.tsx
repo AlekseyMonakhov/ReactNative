@@ -1,5 +1,6 @@
-import { View, ActivityIndicator, StyleSheet, FlatList, SafeAreaView } from 'react-native'
+import { View, ActivityIndicator, StyleSheet, SafeAreaView } from 'react-native'
 import useSWR from 'swr'
+import Animated, { useSharedValue, useAnimatedScrollHandler } from 'react-native-reanimated';
 
 import Item from '../components/Item';
 import { IItem, HomeStackParamList } from '@/types';
@@ -14,22 +15,32 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 type Props = NativeStackScreenProps<HomeStackParamList, 'HomeScreen'>;
 
+
+
 const HomeScreen: FC<Props> = ({ navigation, route }) => {
+    const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 
     const [isPending, startTransition] = useTransition()
 
     const [searchValue, setSearchValue] = useState('');
     const [refreshing, setRefreshing] = useState(false);
 
+    const scrollY = useSharedValue(0);
+
+    const scrollHandler = useAnimatedScrollHandler({
+        onScroll: (event) => {
+            scrollY.value = event.contentOffset.y;
+        },
+    });
+
     const { data = [], isLoading, mutate } = useSWR<IItem[]>(
-        process.env.EXPO_PUBLIC_API_URL + '/items',
+        apiUrl + '/items',
         (url: string) => fetch(url).then((res) => res.json()),
         {
             revalidateIfStale: true,
             fallbackData: [],
         }
     )
-
 
     const navigateToPizzaScreen = useCallback((item: IItem) => {
         navigation.navigate('PizzaScreen', item)
@@ -71,6 +82,7 @@ const HomeScreen: FC<Props> = ({ navigation, route }) => {
     }, [data])
 
     const onEndReachedHandler = useCallback(() => {
+
         mutate([...data,
         {
             "title": "Four Cheese Pizza 12",
@@ -149,10 +161,13 @@ const HomeScreen: FC<Props> = ({ navigation, route }) => {
                 searchValue={searchValue}
                 setSearchValue={setSearchValueHandler}
                 navigateToModalScreen={navigateToModalScreen}
+                scrollY={scrollY}
             />
 
-            <FlatList
+            <Animated.FlatList
                 data={filteredData}
+                onScroll={scrollHandler}
+
                 renderItem={({ item }) => <Item item={item} navigateToPizzaScreen={navigateToPizzaScreen} />}
                 keyExtractor={(item) => item.id.toString()}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
@@ -176,7 +191,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        paddingTop: 15,
         paddingHorizontal: 5
     },
     centered: {

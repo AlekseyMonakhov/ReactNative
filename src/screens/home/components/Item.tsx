@@ -19,6 +19,10 @@ const Item: FC<Props> = ({ item, navigateToPizzaScreen }) => {
         cartStore.add(item)
     }, [])
 
+
+
+
+
     return (
         <View style={[styles.card, styles.elevation]}>
             <View style={styles.imageContainer}>

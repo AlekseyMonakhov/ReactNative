@@ -17,7 +17,7 @@ const PizzaScreen: FC<Props> = ({ navigation, route }) => {
     }, [])
 
 
-  
+
 
     return (
         <View style={styles.container}>
@@ -29,7 +29,7 @@ const PizzaScreen: FC<Props> = ({ navigation, route }) => {
                 />
 
                 <AddToFavoriteBtn
-                    item={route.params}
+                    itemId={route.params.id}
                     top={25}
                     right={25}
                     bgActive
