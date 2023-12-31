@@ -162,7 +162,7 @@ export default memo(Carusel);
 
 const styles = StyleSheet.create({
     item: {
-        width: width - 110,
+        width: width - 10,
         height: 450,
     },
     textContainer: {

@@ -1,4 +1,4 @@
-import ModalScreen from "@/src/screens/home/screens/ModalScreen";
+import ModalScreen from "@/src/screens/favorite/screens/ModalScreen";
 import PizzaScreen from "@/src/screens/home/screens/PizzaScreen";
 import { HomeStackParamList } from "@/types";
 import { createDrawerNavigator } from "@react-navigation/drawer";

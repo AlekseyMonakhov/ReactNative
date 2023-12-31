@@ -1,10 +1,10 @@
 export interface IItem {
     id: string;
+    image: string;
     title: string;
     description: string;
     newPrice: number;
     oldPrice: number;
-    image: string;
     isNew: boolean;
 }
 
@@ -25,4 +25,5 @@ export type SettingStackParamList = {
 
 export type CartStackParamList = {
     CartScreen: undefined;
+     PizzaScreen: IItem;
 };

@@ -4,23 +4,41 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity, StyleSheet } from "react-native";
 import { favoriteStore } from "@/src/store/favoriteStore";
 import { observer } from "mobx-react"
+import { IItem } from "@/types";
 
 type Props = {
-    itemId: string;
     top?: number;
     right?: number;
     bgActive?: boolean;
-}
+} & IItem
 
 
-const AddToFavoriteBtn: FC<Props> = ({ itemId, top = 0, right = 0, bgActive }) => {
+const AddToFavoriteBtn: FC<Props> = ({
+    top = 0,
+    right = 0,
+    bgActive,
+    description,
+    id,
+    image,
+    isNew,
+    newPrice,
+    oldPrice,
+    title,
+}) => {
 
-
-    const isInFavorite = favoriteStore.getIds.includes(itemId);
+    const isInFavorite = favoriteStore.getIds.includes(id);
 
 
     const addToFavotie = () => {
-        favoriteStore.tooggle(itemId);
+        favoriteStore.tooggle({
+            description,
+            id,
+            image,
+            isNew,
+            newPrice,
+            oldPrice,
+            title,
+        });
     }
 
     return (

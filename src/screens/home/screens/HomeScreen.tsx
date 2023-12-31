@@ -12,6 +12,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import useSWRInfinite from "swr/infinite";
 import { fetcher } from '@/src/api';
 import { getKey } from '@/src/utils/helpers';
+import Carusel from '../components/Carusel';
 
 
 type Props = NativeStackScreenProps<HomeStackParamList, 'HomeScreen'>;
@@ -109,6 +110,8 @@ const HomeScreen: FC<Props> = ({ navigation, route }) => {
                 scrollY={scrollY}
             />
 
+
+
             <Animated.FlatList
                 data={filteredData}
                 onScroll={scrollHandler}
@@ -119,6 +122,9 @@ const HomeScreen: FC<Props> = ({ navigation, route }) => {
                         navigateToPizzaScreen={navigateToPizzaScreen}
                     />
                 )}
+
+                ListHeaderComponent={<Carusel />}
+
                 keyExtractor={(item) => item.id.toString()}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={<Empty message='No item Found' />}
@@ -128,9 +134,6 @@ const HomeScreen: FC<Props> = ({ navigation, route }) => {
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefreshHandler} />
                 }
-
-
-
             />
         </SafeAreaView>
 

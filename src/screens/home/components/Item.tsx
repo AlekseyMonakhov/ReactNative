@@ -6,14 +6,13 @@ import { colors } from '@/src/utils/colors';
 import AddToCartBtn from '../../../components/AddToCartBtn';
 import AddToFavoriteBtn from '../../../components/AddToFavoriteBtn';
 import { cartStore } from "@/src/store/cartStore"
+import BaseItem from '@/src/components/BaseItem';
 
 
 type Props = {
     item: IItem;
     navigateToPizzaScreen: (item: IItem) => void;
 }
-
-const ITEM_HEIGHT = 200;
 
 
 const Item: FC<Props> = ({ item, navigateToPizzaScreen }) => {
@@ -25,27 +24,8 @@ const Item: FC<Props> = ({ item, navigateToPizzaScreen }) => {
     }, [])
 
 
-
     return (
-        <View
-            style={[styles.card, styles.elevation]}
-        >
-            <View style={styles.imageContainer}>
-                <TouchableOpacity onPress={navigateToPizzaScreen.bind(null, item)}>
-                    {
-                        item.isNew ? (
-                            <Text style={styles.newLabel}>
-                                New
-                            </Text>
-                        )
-                            : null
-                    }
-                    <Image
-                        style={styles.image}
-                        source={{ uri: item.image }}
-                    />
-                </TouchableOpacity>
-            </View>
+        <BaseItem item={item} navigateToPizzaScreen={navigateToPizzaScreen}>
             <View style={styles.infoContainer}>
                 <Text
                     style={styles.infoTitle}
@@ -74,9 +54,11 @@ const Item: FC<Props> = ({ item, navigateToPizzaScreen }) => {
 
 
                 <AddToCartBtn addToCart={addToCart} />
-                <AddToFavoriteBtn itemId={item.id} />
+                <AddToFavoriteBtn
+                    {...item}
+                />
             </View>
-        </View>
+        </BaseItem>
     )
 }
 
@@ -84,52 +66,7 @@ export default memo(Item);
 
 
 const styles = StyleSheet.create({
-    card: {
-        padding: 12,
-        backgroundColor: colors.white,
-        flexDirection: 'row',
-        height: ITEM_HEIGHT,
-        borderWidth: 1,
-        borderRadius: 30,
-        alignItems: 'center',
-        columnGap: 25,
-        overflow: 'hidden',
-    },
-    elevation: {
-        elevation: 5,
-    },
 
-    imageContainer: {
-        position: 'relative',
-        minWidth: 150,
-        minHeight: 150,
-        maxHeight: "85%",
-    },
-    newLabel: {
-        position: 'absolute',
-        top: -16,
-        right: -16,
-        backgroundColor: colors.white,
-        padding: 12,
-        borderWidth: 1,
-        borderRadius: 50,
-        color: colors.red,
-        fontSize: 12,
-        zIndex: 10,
-    },
-    image: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover',
-        borderRadius: 10,
-    },
-    infoContainer: {
-        flex: 1,
-        alignItems: 'flex-start',
-        position: 'relative',
-        minHeight: 150,
-        maxHeight: "90%",
-    },
     infoTitle: {
         fontSize: 24,
         fontWeight: 'bold',
@@ -154,5 +91,12 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: colors.gray,
         textDecorationLine: 'line-through',
+    },
+    infoContainer: {
+        flex: 1,
+        alignItems: 'flex-start',
+        position: 'relative',
+        minHeight: 150,
+        maxHeight: "90%",
     }
 })

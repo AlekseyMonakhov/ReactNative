@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/Entypo";
 import { observer } from "mobx-react"
 import { cartStore } from "@/src/store/cartStore"
 import { colors } from '@/src/utils/colors';
-
+import Animated, { BounceIn, BounceOut } from 'react-native-reanimated';
 
 type Props = {
     size: number;
@@ -34,11 +34,17 @@ const CartIcon: FC<Props> = ({ isFocused, size }) => {
                 color={isFocused ? colors.blue : colors.blackWithOpacity}
             />
 
-            <View style={styles.badge}>
-                <Text style={styles.badgeText}>
+            <Animated.View
+                style={styles.badge}
+                entering={BounceIn.duration(500)}
+                exiting={BounceOut.duration(500)}
+            >
+                <Text
+                    style={styles.badgeText}
+                >
                     {cartItemsCount}
                 </Text>
-            </View>
+            </Animated.View>
         </View>
     )
 }

@@ -1,31 +1,36 @@
 
 
+import { IItem } from "@/types";
 import { action, computed, makeObservable, observable } from "mobx";
 
 
 
 class FavoriteStore {
-    private store = observable.set<string>();
+    private store = observable.map<string, IItem>();
 
     constructor() {
         makeObservable(this, {
             getIds: computed,
+            getFavoriteItems: computed,
             clear: action,
             tooggle: action,
         });
     }
 
     get getIds() {
-        return Array.from(this.store);
+        return Array.from(this.store.keys());
+    }
+
+    get getFavoriteItems() {
+        return Array.from(this.store.values());
     }
 
 
-    tooggle(id: string) {
-
-        if (this.store.has(id)) {
-            this.store.delete(id);
+    tooggle(item: IItem) {
+        if (this.store.has(item.id)) {
+            this.store.delete(item.id);
         } else {
-            this.store.add(id);
+            this.store.set(item.id, item);
         }
     }
 

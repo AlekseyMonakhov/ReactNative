@@ -1,9 +1,10 @@
 import { colors } from '@/src/utils/colors';
 import React, { useState, FC, memo, useRef, useEffect } from 'react'
-import { View, StyleSheet, TextInput } from 'react-native'
+import { View, StyleSheet, TextInput, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Input from '@/src/components/Input';
-import Animated, { BounceIn, BounceOut, FadeIn, FadeOut, SharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeOut, SharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import HeartHeaderIcon from '@/src/components/HeartHeaderIcon';
 
 
 
@@ -35,13 +36,14 @@ const Header: FC<Props> = ({ setSearchValue, searchValue, navigateToModalScreen,
 
 
     const animatedHeaderStyle = useAnimatedStyle(() => {
-        const scrollDistance = 250;
-       
-        const height = scrollY.value > scrollDistance ? withTiming(0) : withTiming(75);
-        const paddingHorizontal = scrollY.value > scrollDistance ? withTiming(0) : withTiming(20);
-        const paddingVertical = scrollY.value > scrollDistance ? withTiming(0) : withTiming(20);
-        const marginTop = scrollY.value > scrollDistance ? withTiming(0) : withTiming(15);
-        const opacity = scrollY.value > scrollDistance ? withTiming(0) : withTiming(1);
+        const scrollDistance = 100;
+        const condition = scrollY.value > scrollDistance && scrollY.value < 1500;
+
+        const height = condition ? withTiming(0) : withTiming(75);
+        const paddingHorizontal = condition ? withTiming(0) : withTiming(20);
+        const paddingVertical = condition ? withTiming(0) : withTiming(20);
+        const marginTop = condition ? withTiming(0) : withTiming(15);
+        const opacity = condition ? withTiming(0) : withTiming(1);
 
         return {
             height,
@@ -81,12 +83,8 @@ const Header: FC<Props> = ({ setSearchValue, searchValue, navigateToModalScreen,
                     color={colors.blue}
                     onPress={setSearchBarVisibleHandler}
                 />
-                <Icon
-                    name='heart'
-                    size={32}
-                    color={colors.purple}
-                    onPress={navigateToModalScreen}
-                />
+
+                <HeartHeaderIcon navigateToModalScreen={navigateToModalScreen} />
             </View>
 
 
@@ -126,8 +124,4 @@ const styles = StyleSheet.create({
         flexBasis: '75%',
         flexDirection: 'row',
     }
-
-
-
-
 })

@@ -5,14 +5,15 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { cartStore } from '@/src/store/cartStore';
 import StyledButton from '@/src/components/Button';
 import { colors } from '@/src/utils/colors';
-import AddToFavoriteBtn from '../../../components/AddToFavoriteBtn';
+import BaseItem from '@/src/components/BaseItem';
 
 
 type Props = {
-    itemId: string
+    itemId: string;
+    navigateToPizzaScreen: (item: IItem) => void;
 }
 
-const CartItem: FC<Props> = ({ itemId }) => {
+const CartItem: FC<Props> = ({ itemId, navigateToPizzaScreen }) => {
 
     const item = cartStore.getById(itemId);
 
@@ -24,24 +25,8 @@ const CartItem: FC<Props> = ({ itemId }) => {
         cartStore.add(item);
     }
 
-
-
-
     return (
-        <View style={styles.container}>
-
-            <AddToFavoriteBtn
-                top={10}
-                right={10}
-                itemId={itemId}
-            />
-
-            <Image
-                source={{ uri: item.image }}
-                style={styles.image}
-                height={125}
-                width={125}
-            />
+        <BaseItem item={item} navigateToPizzaScreen={navigateToPizzaScreen}>
 
             <View style={styles.descriptionContainer}>
                 <Text style={styles.itemTitle}>{item.title}</Text>
@@ -60,7 +45,8 @@ const CartItem: FC<Props> = ({ itemId }) => {
                 </View>
             </View>
 
-        </View>
+
+        </BaseItem>
     )
 }
 
@@ -68,23 +54,6 @@ export default observer(CartItem);
 
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        flexFlow: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-        paddingVertical: 30,
-        backgroundColor: 'white',
-        borderRadius: 10,
-        elevation: 5,
-    },
-
-    image: {
-        borderRadius: 25,
-        objectFit: 'cover',
-    },
 
     descriptionContainer: {
         flex: 1,
