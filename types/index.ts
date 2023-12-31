@@ -1,4 +1,3 @@
-import { HomeScreen } from "@/src/screens/home/screens/HomeScreen";
 export interface IItem {
     id: string;
     image: string;
@@ -7,6 +6,23 @@ export interface IItem {
     newPrice: number;
     oldPrice: number;
     isNew: boolean;
+}
+
+type IOrder = {
+    id: string;
+    items: ICartItem[];
+    total: number;
+    date: string;
+};
+
+export interface IUser {
+    id: string;
+    name: string;
+    email: string;
+    address: string;
+    orders: {
+        [key: string]: IOrder;
+    };
 }
 
 export type ICartItem = {

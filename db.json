@@ -1,285 +1,283 @@
 {
-    "items": [
-        {
-            "title": "Margherita Pizza",
-            "description": "Classic Margherita with fresh mozzarella, basil, and a rich tomato sauce.",
-            "newPrice": 9.99,
-            "oldPrice": 11.99,
-            "image": "https://www.allrecipes.com/thmb/fFW1o307WSqFFYQ3-QXYVpnFj6E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/48727-Mikes-homemade-pizza-DDMFS-beauty-4x3-BG-2974-a7a9842c14e34ca699f3b7d7143256cf.jpg",
-            "id": 1,
-            "isNew": false
-        },
-        {
-            "title": "Pepperoni Pizza",
-            "description": "Spicy pepperoni with mozzarella cheese and a traditional Italian sauce.",
-            "newPrice": 10.99,
-            "oldPrice": 13.99,
-            "image": "https://hips.hearstapps.com/hmg-prod/images/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*",
-            "id": 2,
-            "isNew": true
-        },
-        {
-            "title": "Hawaiian Pizza",
-            "description": "A sweet and savory mix of ham, pineapple, cheese, and tomato sauce.",
-            "newPrice": 9.49,
-            "oldPrice": 12.49,
-            "image": "https://www.allrecipes.com/thmb/fFW1o307WSqFFYQ3-QXYVpnFj6E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/48727-Mikes-homemade-pizza-DDMFS-beauty-4x3-BG-2974-a7a9842c14e34ca699f3b7d7143256cf.jpg",
-            "id": 3,
-            "isNew": false
-        },
-        {
-            "title": "Veggie Pizza",
-            "description": "Loaded with bell peppers, olives, onions, tomatoes, and mushrooms.",
-            "newPrice": 8.99,
-            "oldPrice": 11.49,
-            "image": "https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800",
-            "id": 4,
-            "isNew": true
-        },
-        {
-            "title": "BBQ Chicken Pizza",
-            "description": "Tender chicken pieces with BBQ sauce, onions, and cheese.",
-            "newPrice": 11.99,
-            "oldPrice": 14.99,
-            "image": "https://tastesbetterfromscratch.com/wp-content/uploads/2023/06/Pepperoni-Pizza-1.jpg",
-            "id": 5,
-            "isNew": false
-        },
-        {
-            "title": "Meat Lover's Pizza",
-            "description": "Packed with pepperoni, sausage, ham, bacon, and mozzarella.",
-            "newPrice": 12.99,
-            "oldPrice": 15.99,
-            "image": "https://cdn.loveandlemons.com/wp-content/uploads/2023/07/margherita-pizza-500x375.jpg",
-            "id": 6,
-            "isNew": true
-        },
-        {
-            "title": "Buffalo Chicken Pizza",
-            "description": "Spicy buffalo chicken, blue cheese, and celery.",
-            "newPrice": 10.49,
-            "oldPrice": 13.49,
-            "image": "https://www.allrecipes.com/thmb/0xH8n2D4cC97t7mcC7eT2SDZ0aE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/6776_Pizza-Dough_ddmfs_2x1_1725-fdaa76496da045b3bdaadcec6d4c5398.jpg",
-            "id": 7,
-            "isNew": false
-        },
-        {
-            "title": "Four Cheese Pizza",
-            "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
-            "newPrice": 9.99,
-            "oldPrice": 12.99,
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
-            "id": 8,
-            "isNew": true
-        },
-        {
-            "title": "Mushroom Pizza",
-            "description": "Earthy and flavorful mushroom mix with mozzarella and garlic.",
-            "newPrice": 8.99,
-            "oldPrice": 11.99,
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJl1Z20BYdDmv1rn2Gyc_9oATjqYmKC2KOXA&usqp=CAU",
-            "id": 9,
-            "isNew": false
-        },
-        {
-            "title": "Spinach and Feta Pizza",
-            "description": "A healthy choice with spinach, feta cheese, olives, and onions.",
-            "newPrice": 10.99,
-            "oldPrice": 13.99,
-            "image": "https://t3.ftcdn.net/jpg/00/27/57/96/360_F_27579652_tM7V4fZBBw8RLmZo0Bi8WhtO2EosTRFD.jpg",
-            "id": 10,
-            "isNew": true
-        },
-        {
-            "title": "Margherita Pizza",
-            "description": "Classic Margherita with fresh mozzarella, basil, and a rich tomato sauce.",
-            "newPrice": 9.99,
-            "oldPrice": 11.99,
-            "image": "https://www.allrecipes.com/thmb/fFW1o307WSqFFYQ3-QXYVpnFj6E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/48727-Mikes-homemade-pizza-DDMFS-beauty-4x3-BG-2974-a7a9842c14e34ca699f3b7d7143256cf.jpg",
-            "id": 11,
-            "isNew": false
-        },
-        {
-            "title": "Pepperoni Pizza",
-            "description": "Spicy pepperoni with mozzarella cheese and a traditional Italian sauce.",
-            "newPrice": 10.99,
-            "oldPrice": 13.99,
-            "image": "https://hips.hearstapps.com/hmg-prod/images/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*",
-            "id": 12,
-            "isNew": true
-        },
-        {
-            "title": "Hawaiian Pizza",
-            "description": "A sweet and savory mix of ham, pineapple, cheese, and tomato sauce.",
-            "newPrice": 9.49,
-            "oldPrice": 12.49,
-            "image": "https://www.allrecipes.com/thmb/fFW1o307WSqFFYQ3-QXYVpnFj6E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/48727-Mikes-homemade-pizza-DDMFS-beauty-4x3-BG-2974-a7a9842c14e34ca699f3b7d7143256cf.jpg",
-            "id": 13,
-            "isNew": false
-        },
-        {
-            "title": "Veggie Pizza",
-            "description": "Loaded with bell peppers, olives, onions, tomatoes, and mushrooms.",
-            "newPrice": 8.99,
-            "oldPrice": 11.49,
-            "image": "https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800",
-            "id": 14,
-            "isNew": true
-        },
-        {
-            "title": "BBQ Chicken Pizza",
-            "description": "Tender chicken pieces with BBQ sauce, onions, and cheese.",
-            "newPrice": 11.99,
-            "oldPrice": 14.99,
-            "image": "https://tastesbetterfromscratch.com/wp-content/uploads/2023/06/Pepperoni-Pizza-1.jpg",
-            "id": 15,
-            "isNew": false
-        },
-        {
-            "title": "Meat Lover's Pizza",
-            "description": "Packed with pepperoni, sausage, ham, bacon, and mozzarella.",
-            "newPrice": 12.99,
-            "oldPrice": 15.99,
-            "image": "https://cdn.loveandlemons.com/wp-content/uploads/2023/07/margherita-pizza-500x375.jpg",
-            "id": 16,
-            "isNew": true
-        },
-        {
-            "title": "Buffalo Chicken Pizza",
-            "description": "Spicy buffalo chicken, blue cheese, and celery.",
-            "newPrice": 10.49,
-            "oldPrice": 13.49,
-            "image": "https://www.allrecipes.com/thmb/0xH8n2D4cC97t7mcC7eT2SDZ0aE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/6776_Pizza-Dough_ddmfs_2x1_1725-fdaa76496da045b3bdaadcec6d4c5398.jpg",
-            "id": 17,
-            "isNew": false
-        },
-        {
-            "title": "Four Cheese Pizza",
-            "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
-            "newPrice": 9.99,
-            "oldPrice": 12.99,
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
-            "id": 18,
-            "isNew": true
-        },
-        {
-            "title": "Mushroom Pizza",
-            "description": "Earthy and flavorful mushroom mix with mozzarella and garlic.",
-            "newPrice": 8.99,
-            "oldPrice": 11.99,
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJl1Z20BYdDmv1rn2Gyc_9oATjqYmKC2KOXA&usqp=CAU",
-            "id": 19,
-            "isNew": false
-        },
-        {
-            "title": "Spinach and Feta Pizza",
-            "description": "A healthy choice with spinach, feta cheese, olives, and onions.",
-            "newPrice": 10.99,
-            "oldPrice": 13.99,
-            "image": "https://t3.ftcdn.net/jpg/00/27/57/96/360_F_27579652_tM7V4fZBBw8RLmZo0Bi8WhtO2EosTRFD.jpg",
-            "id": 20,
-            "isNew": true
-        },
-        {
-            "title": "Margherita Pizza",
-            "description": "Classic Margherita with fresh mozzarella, basil, and a rich tomato sauce.",
-            "newPrice": 9.99,
-            "oldPrice": 11.99,
-            "image": "https://www.allrecipes.com/thmb/fFW1o307WSqFFYQ3-QXYVpnFj6E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/48727-Mikes-homemade-pizza-DDMFS-beauty-4x3-BG-2974-a7a9842c14e34ca699f3b7d7143256cf.jpg",
-            "id": 21,
-            "isNew": false
-        },
-        {
-            "title": "Pepperoni Pizza",
-            "description": "Spicy pepperoni with mozzarella cheese and a traditional Italian sauce.",
-            "newPrice": 10.99,
-            "oldPrice": 13.99,
-            "image": "https://hips.hearstapps.com/hmg-prod/images/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*",
-            "id": 22,
-            "isNew": true
-        },
-        {
-            "title": "Hawaiian Pizza",
-            "description": "A sweet and savory mix of ham, pineapple, cheese, and tomato sauce.",
-            "newPrice": 9.49,
-            "oldPrice": 12.49,
-            "image": "https://www.allrecipes.com/thmb/fFW1o307WSqFFYQ3-QXYVpnFj6E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/48727-Mikes-homemade-pizza-DDMFS-beauty-4x3-BG-2974-a7a9842c14e34ca699f3b7d7143256cf.jpg",
-            "id": 23,
-            "isNew": false
-        },
-        {
-            "title": "Veggie Pizza",
-            "description": "Loaded with bell peppers, olives, onions, tomatoes, and mushrooms.",
-            "newPrice": 8.99,
-            "oldPrice": 11.49,
-            "image": "https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800",
-            "id": 24,
-            "isNew": true
-        },
-        {
-            "title": "BBQ Chicken Pizza",
-            "description": "Tender chicken pieces with BBQ sauce, onions, and cheese.",
-            "newPrice": 11.99,
-            "oldPrice": 14.99,
-            "image": "https://tastesbetterfromscratch.com/wp-content/uploads/2023/06/Pepperoni-Pizza-1.jpg",
-            "id": 25,
-            "isNew": false
-        },
-        {
-            "title": "Meat Lover's Pizza",
-            "description": "Packed with pepperoni, sausage, ham, bacon, and mozzarella.",
-            "newPrice": 12.99,
-            "oldPrice": 15.99,
-            "image": "https://cdn.loveandlemons.com/wp-content/uploads/2023/07/margherita-pizza-500x375.jpg",
-            "id": 26,
-            "isNew": true
-        },
-        {
-            "title": "Buffalo Chicken Pizza",
-            "description": "Spicy buffalo chicken, blue cheese, and celery.",
-            "newPrice": 10.49,
-            "oldPrice": 13.49,
-            "image": "https://www.allrecipes.com/thmb/0xH8n2D4cC97t7mcC7eT2SDZ0aE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/6776_Pizza-Dough_ddmfs_2x1_1725-fdaa76496da045b3bdaadcec6d4c5398.jpg",
-            "id": 27,
-            "isNew": false
-        },
-        {
-            "title": "Four Cheese Pizza",
-            "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
-            "newPrice": 9.99,
-            "oldPrice": 12.99,
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
-            "id": 28,
-            "isNew": true
-        },
-        {
-            "title": "Mushroom Pizza",
-            "description": "Earthy and flavorful mushroom mix with mozzarella and garlic.",
-            "newPrice": 8.99,
-            "oldPrice": 11.99,
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJl1Z20BYdDmv1rn2Gyc_9oATjqYmKC2KOXA&usqp=CAU",
-            "id": 29,
-            "isNew": false
-        },
-        {
-            "title": "Spinach and Feta Pizza",
-            "description": "A healthy choice with spinach, feta cheese, olives, and onions.",
-            "newPrice": 10.99,
-            "oldPrice": 13.99,
-            "image": "https://t3.ftcdn.net/jpg/00/27/57/96/360_F_27579652_tM7V4fZBBw8RLmZo0Bi8WhtO2EosTRFD.jpg",
-            "id": 30,
-            "isNew": true
-        }
-    ],
-    "users": [
-        {
-            "id": 1,
-            "name": "John Doe",
-            "email": "some@gmail.com",
-            "address": "Some Street 123",
-            "orders": {},
-            "cart": {},
-            "favorites": {}
-        }
-    ]
+  "items": [
+    {
+      "title": "Margherita Pizza",
+      "description": "Classic Margherita with fresh mozzarella, basil, and a rich tomato sauce.",
+      "newPrice": 9.99,
+      "oldPrice": 11.99,
+      "image": "https://www.allrecipes.com/thmb/fFW1o307WSqFFYQ3-QXYVpnFj6E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/48727-Mikes-homemade-pizza-DDMFS-beauty-4x3-BG-2974-a7a9842c14e34ca699f3b7d7143256cf.jpg",
+      "id": 1,
+      "isNew": false
+    },
+    {
+      "title": "Pepperoni Pizza",
+      "description": "Spicy pepperoni with mozzarella cheese and a traditional Italian sauce.",
+      "newPrice": 10.99,
+      "oldPrice": 13.99,
+      "image": "https://hips.hearstapps.com/hmg-prod/images/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*",
+      "id": 2,
+      "isNew": true
+    },
+    {
+      "title": "Hawaiian Pizza",
+      "description": "A sweet and savory mix of ham, pineapple, cheese, and tomato sauce.",
+      "newPrice": 9.49,
+      "oldPrice": 12.49,
+      "image": "https://www.allrecipes.com/thmb/fFW1o307WSqFFYQ3-QXYVpnFj6E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/48727-Mikes-homemade-pizza-DDMFS-beauty-4x3-BG-2974-a7a9842c14e34ca699f3b7d7143256cf.jpg",
+      "id": 3,
+      "isNew": false
+    },
+    {
+      "title": "Veggie Pizza",
+      "description": "Loaded with bell peppers, olives, onions, tomatoes, and mushrooms.",
+      "newPrice": 8.99,
+      "oldPrice": 11.49,
+      "image": "https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800",
+      "id": 4,
+      "isNew": true
+    },
+    {
+      "title": "BBQ Chicken Pizza",
+      "description": "Tender chicken pieces with BBQ sauce, onions, and cheese.",
+      "newPrice": 11.99,
+      "oldPrice": 14.99,
+      "image": "https://tastesbetterfromscratch.com/wp-content/uploads/2023/06/Pepperoni-Pizza-1.jpg",
+      "id": 5,
+      "isNew": false
+    },
+    {
+      "title": "Meat Lover's Pizza",
+      "description": "Packed with pepperoni, sausage, ham, bacon, and mozzarella.",
+      "newPrice": 12.99,
+      "oldPrice": 15.99,
+      "image": "https://cdn.loveandlemons.com/wp-content/uploads/2023/07/margherita-pizza-500x375.jpg",
+      "id": 6,
+      "isNew": true
+    },
+    {
+      "title": "Buffalo Chicken Pizza",
+      "description": "Spicy buffalo chicken, blue cheese, and celery.",
+      "newPrice": 10.49,
+      "oldPrice": 13.49,
+      "image": "https://www.allrecipes.com/thmb/0xH8n2D4cC97t7mcC7eT2SDZ0aE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/6776_Pizza-Dough_ddmfs_2x1_1725-fdaa76496da045b3bdaadcec6d4c5398.jpg",
+      "id": 7,
+      "isNew": false
+    },
+    {
+      "title": "Four Cheese Pizza",
+      "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
+      "newPrice": 9.99,
+      "oldPrice": 12.99,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
+      "id": 8,
+      "isNew": true
+    },
+    {
+      "title": "Mushroom Pizza",
+      "description": "Earthy and flavorful mushroom mix with mozzarella and garlic.",
+      "newPrice": 8.99,
+      "oldPrice": 11.99,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJl1Z20BYdDmv1rn2Gyc_9oATjqYmKC2KOXA&usqp=CAU",
+      "id": 9,
+      "isNew": false
+    },
+    {
+      "title": "Spinach and Feta Pizza",
+      "description": "A healthy choice with spinach, feta cheese, olives, and onions.",
+      "newPrice": 10.99,
+      "oldPrice": 13.99,
+      "image": "https://t3.ftcdn.net/jpg/00/27/57/96/360_F_27579652_tM7V4fZBBw8RLmZo0Bi8WhtO2EosTRFD.jpg",
+      "id": 10,
+      "isNew": true
+    },
+    {
+      "title": "Margherita Pizza",
+      "description": "Classic Margherita with fresh mozzarella, basil, and a rich tomato sauce.",
+      "newPrice": 9.99,
+      "oldPrice": 11.99,
+      "image": "https://www.allrecipes.com/thmb/fFW1o307WSqFFYQ3-QXYVpnFj6E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/48727-Mikes-homemade-pizza-DDMFS-beauty-4x3-BG-2974-a7a9842c14e34ca699f3b7d7143256cf.jpg",
+      "id": 11,
+      "isNew": false
+    },
+    {
+      "title": "Pepperoni Pizza",
+      "description": "Spicy pepperoni with mozzarella cheese and a traditional Italian sauce.",
+      "newPrice": 10.99,
+      "oldPrice": 13.99,
+      "image": "https://hips.hearstapps.com/hmg-prod/images/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*",
+      "id": 12,
+      "isNew": true
+    },
+    {
+      "title": "Hawaiian Pizza",
+      "description": "A sweet and savory mix of ham, pineapple, cheese, and tomato sauce.",
+      "newPrice": 9.49,
+      "oldPrice": 12.49,
+      "image": "https://www.allrecipes.com/thmb/fFW1o307WSqFFYQ3-QXYVpnFj6E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/48727-Mikes-homemade-pizza-DDMFS-beauty-4x3-BG-2974-a7a9842c14e34ca699f3b7d7143256cf.jpg",
+      "id": 13,
+      "isNew": false
+    },
+    {
+      "title": "Veggie Pizza",
+      "description": "Loaded with bell peppers, olives, onions, tomatoes, and mushrooms.",
+      "newPrice": 8.99,
+      "oldPrice": 11.49,
+      "image": "https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800",
+      "id": 14,
+      "isNew": true
+    },
+    {
+      "title": "BBQ Chicken Pizza",
+      "description": "Tender chicken pieces with BBQ sauce, onions, and cheese.",
+      "newPrice": 11.99,
+      "oldPrice": 14.99,
+      "image": "https://tastesbetterfromscratch.com/wp-content/uploads/2023/06/Pepperoni-Pizza-1.jpg",
+      "id": 15,
+      "isNew": false
+    },
+    {
+      "title": "Meat Lover's Pizza",
+      "description": "Packed with pepperoni, sausage, ham, bacon, and mozzarella.",
+      "newPrice": 12.99,
+      "oldPrice": 15.99,
+      "image": "https://cdn.loveandlemons.com/wp-content/uploads/2023/07/margherita-pizza-500x375.jpg",
+      "id": 16,
+      "isNew": true
+    },
+    {
+      "title": "Buffalo Chicken Pizza",
+      "description": "Spicy buffalo chicken, blue cheese, and celery.",
+      "newPrice": 10.49,
+      "oldPrice": 13.49,
+      "image": "https://www.allrecipes.com/thmb/0xH8n2D4cC97t7mcC7eT2SDZ0aE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/6776_Pizza-Dough_ddmfs_2x1_1725-fdaa76496da045b3bdaadcec6d4c5398.jpg",
+      "id": 17,
+      "isNew": false
+    },
+    {
+      "title": "Four Cheese Pizza",
+      "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
+      "newPrice": 9.99,
+      "oldPrice": 12.99,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
+      "id": 18,
+      "isNew": true
+    },
+    {
+      "title": "Mushroom Pizza",
+      "description": "Earthy and flavorful mushroom mix with mozzarella and garlic.",
+      "newPrice": 8.99,
+      "oldPrice": 11.99,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJl1Z20BYdDmv1rn2Gyc_9oATjqYmKC2KOXA&usqp=CAU",
+      "id": 19,
+      "isNew": false
+    },
+    {
+      "title": "Spinach and Feta Pizza",
+      "description": "A healthy choice with spinach, feta cheese, olives, and onions.",
+      "newPrice": 10.99,
+      "oldPrice": 13.99,
+      "image": "https://t3.ftcdn.net/jpg/00/27/57/96/360_F_27579652_tM7V4fZBBw8RLmZo0Bi8WhtO2EosTRFD.jpg",
+      "id": 20,
+      "isNew": true
+    },
+    {
+      "title": "Margherita Pizza",
+      "description": "Classic Margherita with fresh mozzarella, basil, and a rich tomato sauce.",
+      "newPrice": 9.99,
+      "oldPrice": 11.99,
+      "image": "https://www.allrecipes.com/thmb/fFW1o307WSqFFYQ3-QXYVpnFj6E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/48727-Mikes-homemade-pizza-DDMFS-beauty-4x3-BG-2974-a7a9842c14e34ca699f3b7d7143256cf.jpg",
+      "id": 21,
+      "isNew": false
+    },
+    {
+      "title": "Pepperoni Pizza",
+      "description": "Spicy pepperoni with mozzarella cheese and a traditional Italian sauce.",
+      "newPrice": 10.99,
+      "oldPrice": 13.99,
+      "image": "https://hips.hearstapps.com/hmg-prod/images/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*",
+      "id": 22,
+      "isNew": true
+    },
+    {
+      "title": "Hawaiian Pizza",
+      "description": "A sweet and savory mix of ham, pineapple, cheese, and tomato sauce.",
+      "newPrice": 9.49,
+      "oldPrice": 12.49,
+      "image": "https://www.allrecipes.com/thmb/fFW1o307WSqFFYQ3-QXYVpnFj6E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/48727-Mikes-homemade-pizza-DDMFS-beauty-4x3-BG-2974-a7a9842c14e34ca699f3b7d7143256cf.jpg",
+      "id": 23,
+      "isNew": false
+    },
+    {
+      "title": "Veggie Pizza",
+      "description": "Loaded with bell peppers, olives, onions, tomatoes, and mushrooms.",
+      "newPrice": 8.99,
+      "oldPrice": 11.49,
+      "image": "https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800",
+      "id": 24,
+      "isNew": true
+    },
+    {
+      "title": "BBQ Chicken Pizza",
+      "description": "Tender chicken pieces with BBQ sauce, onions, and cheese.",
+      "newPrice": 11.99,
+      "oldPrice": 14.99,
+      "image": "https://tastesbetterfromscratch.com/wp-content/uploads/2023/06/Pepperoni-Pizza-1.jpg",
+      "id": 25,
+      "isNew": false
+    },
+    {
+      "title": "Meat Lover's Pizza",
+      "description": "Packed with pepperoni, sausage, ham, bacon, and mozzarella.",
+      "newPrice": 12.99,
+      "oldPrice": 15.99,
+      "image": "https://cdn.loveandlemons.com/wp-content/uploads/2023/07/margherita-pizza-500x375.jpg",
+      "id": 26,
+      "isNew": true
+    },
+    {
+      "title": "Buffalo Chicken Pizza",
+      "description": "Spicy buffalo chicken, blue cheese, and celery.",
+      "newPrice": 10.49,
+      "oldPrice": 13.49,
+      "image": "https://www.allrecipes.com/thmb/0xH8n2D4cC97t7mcC7eT2SDZ0aE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/6776_Pizza-Dough_ddmfs_2x1_1725-fdaa76496da045b3bdaadcec6d4c5398.jpg",
+      "id": 27,
+      "isNew": false
+    },
+    {
+      "title": "Four Cheese Pizza",
+      "description": "A delightful blend of mozzarella, parmesan, cheddar, and gorgonzola.",
+      "newPrice": 9.99,
+      "oldPrice": 12.99,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Aqy7kjjQbxmABSduzIg3uyh_TOOS0_GPGA&usqp=CAU",
+      "id": 28,
+      "isNew": true
+    },
+    {
+      "title": "Mushroom Pizza",
+      "description": "Earthy and flavorful mushroom mix with mozzarella and garlic.",
+      "newPrice": 8.99,
+      "oldPrice": 11.99,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJl1Z20BYdDmv1rn2Gyc_9oATjqYmKC2KOXA&usqp=CAU",
+      "id": 29,
+      "isNew": false
+    },
+    {
+      "title": "Spinach and Feta Pizza",
+      "description": "A healthy choice with spinach, feta cheese, olives, and onions.",
+      "newPrice": 10.99,
+      "oldPrice": 13.99,
+      "image": "https://t3.ftcdn.net/jpg/00/27/57/96/360_F_27579652_tM7V4fZBBw8RLmZo0Bi8WhtO2EosTRFD.jpg",
+      "id": 30,
+      "isNew": true
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe12344",
+      "email": "some@gmail.com",
+      "address": "Some Street 123",
+      "orders": {}
+    }
+  ]
 }

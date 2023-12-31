@@ -13,10 +13,29 @@ type Props = {
 
 const ListFooter: FC<Props> = ({ navigateToThankPage }) => {
     const totalPrice = cartStore.totalPrice;
+    const cartItems = cartStore.getAll;
 
-    const checkout = useCallback(() => {
-        cartStore.clear();
-        navigateToThankPage();
+    const checkout = useCallback(async () => {
+        try {
+            const res = await fetch(process.env.EXPO_PUBLIC_API_URL + '/users/1/orders', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(cartItems)
+            }).then((res) => res.json());
+
+            console.log(res);
+
+
+            cartStore.clear();
+            navigateToThankPage();
+
+        } catch (e) {
+            console.log(e);
+        }
+
+
     }, [])
 
     if (!totalPrice) {
