@@ -14,7 +14,7 @@ export type ICartItem = {
 
 export type HomeStackParamList = {
     HomeScreen: undefined;
-    ModalScreen: undefined;
+    FavoriteScreen: undefined;
     HomeDrawer: undefined;
     PizzaScreen: IItem;
 };
@@ -25,5 +25,6 @@ export type SettingStackParamList = {
 
 export type CartStackParamList = {
     CartScreen: undefined;
-     PizzaScreen: IItem;
+    ThankPageScreen: ICartItem[];
+    PizzaScreen: IItem;
 };

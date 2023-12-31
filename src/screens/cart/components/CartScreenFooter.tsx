@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, useCallback } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { cartStore } from '@/src/store/cartStore';
 import { observer } from 'mobx-react';
@@ -6,13 +6,18 @@ import StyledButton from '@/src/components/Button';
 import { colors } from '@/src/utils/colors';
 
 
-const ListFooter = () => {
+type Props = {
+    navigateToThankPage: () => void;
+}
+
+
+const ListFooter: FC<Props> = ({ navigateToThankPage }) => {
     const totalPrice = cartStore.totalPrice;
 
-    const clearCart = () => {
-
+    const checkout = useCallback(() => {
         cartStore.clear();
-    }
+        navigateToThankPage();
+    }, [])
 
     if (!totalPrice) {
         return null;
@@ -25,7 +30,7 @@ const ListFooter = () => {
                 <Text style={styles.totalText}>{totalPrice}</Text>
             </View>
 
-            <StyledButton onPress={clearCart}>
+            <StyledButton onPress={checkout}>
                 <Text style={styles.btnText}>Checkout</Text>
             </StyledButton>
         </View>

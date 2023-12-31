@@ -2,7 +2,7 @@ import { FC, memo, PropsWithChildren } from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { IItem } from '@/types';
 import { colors } from '@/src/utils/colors';
-
+import Animated, { BounceIn, BounceOut } from 'react-native-reanimated';
 
 
 type Props = {

@@ -10,9 +10,9 @@ class CartStore {
 
     constructor() {
         makeObservable(this, {
-            getIds: computed,
             totalQuantity: computed,
             totalPrice: computed,
+            getAll: computed,
             getById: action,
             clear: action,
             add: action,
@@ -20,13 +20,11 @@ class CartStore {
         });
     }
 
-    get getIds() {
 
-        return Array.from(this.store.keys());
+
+    get getAll() {
+        return Array.from(this.store.values());
     }
-
-
-
 
     get totalQuantity() {
         return Array.from(this.store.values()).reduce(

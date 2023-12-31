@@ -1,4 +1,4 @@
-import ModalScreen from "@/src/screens/favorite/screens/ModalScreen";
+import FavortiteScreen from "@/src/screens/favorite/screens/FavoriteScreen";
 import PizzaScreen from "@/src/screens/home/screens/PizzaScreen";
 import { HomeStackParamList } from "@/types";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -48,8 +48,8 @@ const HomeStack = () => {
             />
 
             <HomeStackNav.Screen
-                name="ModalScreen"
-                component={ModalScreen}
+                name="FavoriteScreen"
+                component={FavortiteScreen}
                 options={{
                     headerShown: false,
                     presentation: 'transparentModal',

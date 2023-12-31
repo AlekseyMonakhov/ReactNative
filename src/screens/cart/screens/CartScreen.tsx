@@ -10,11 +10,17 @@ import { FC, useCallback } from "react";
 
 type Props = NativeStackScreenProps<CartStackParamList, 'CartScreen'>;
 
-const CartScreen:FC<Props> = ({navigation, route}) => {
-    const cartItemsIds = cartStore.getIds;
+const CartScreen: FC<Props> = ({ navigation, route }) => {
+
+    const cartItems = cartStore.getAll;
 
     const navigateToPizzaScreen = useCallback((item: IItem) => {
         navigation.navigate('PizzaScreen', item)
+    }, [])
+
+
+    const navigateToThankPage = useCallback(() => {
+        navigation.navigate('ThankPageScreen', cartItems)
     }, [])
 
 
@@ -22,12 +28,12 @@ const CartScreen:FC<Props> = ({navigation, route}) => {
     return (
         <View style={styles.container}>
             <FlatList
-                data={cartItemsIds}
-                renderItem={({ item }) => <CartItem itemId={item} navigateToPizzaScreen={navigateToPizzaScreen}/>}
-                keyExtractor={id => id}
+                data={cartItems}
+                renderItem={({ item }) => <CartItem {...item} navigateToPizzaScreen={navigateToPizzaScreen} />}
+                keyExtractor={item => item.id}
                 ListEmptyComponent={<Empty message="Your cart is empty yet" />}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
-                ListFooterComponent={ListFooter}
+                ListFooterComponent={<ListFooter navigateToThankPage={navigateToThankPage} />}
             />
         </View>
     )

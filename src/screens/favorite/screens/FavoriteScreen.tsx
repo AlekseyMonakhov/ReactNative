@@ -9,9 +9,9 @@ import { observer } from "mobx-react"
 import FavoriteItem from '../components/FavotiteItem';
 import Empty from '@/src/components/Empty';
 
-type Props = NativeStackScreenProps<HomeStackParamList, 'ModalScreen'>;
+type Props = NativeStackScreenProps<HomeStackParamList, 'FavoriteScreen'>;
 
-const ModalScreen: FC<Props> = ({ navigation, route }) => {
+const FavoriteScreen: FC<Props> = ({ navigation, route }) => {
 
     const favoriteItems = favoriteStore.getFavoriteItems;
 
@@ -54,7 +54,7 @@ const ModalScreen: FC<Props> = ({ navigation, route }) => {
 }
 
 
-export default observer(ModalScreen);
+export default observer(FavoriteScreen);
 
 
 const styles = StyleSheet.create({

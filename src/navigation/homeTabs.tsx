@@ -39,6 +39,7 @@ const HomeTabs = () => {
                 name="Cart"
                 component={CartStack}
                 options={{
+                    unmountOnBlur: true,
                     tabBarIcon({ color, size, focused }) {
                         return <CartIcon
                             size={size}

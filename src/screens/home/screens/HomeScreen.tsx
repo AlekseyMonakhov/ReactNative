@@ -48,7 +48,7 @@ const HomeScreen: FC<Props> = ({ navigation, route }) => {
 
 
     const navigateToModalScreen = useCallback(() => {
-        navigation.navigate('ModalScreen')
+        navigation.navigate('FavoriteScreen')
     }, [])
 
     const setSearchValueHandler = useCallback((value: string) => {

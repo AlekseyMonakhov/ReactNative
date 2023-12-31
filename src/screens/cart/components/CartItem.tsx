@@ -10,16 +10,33 @@ import AddToFavoriteBtn from '@/src/components/AddToFavoriteBtn';
 
 
 type Props = {
-    itemId: string;
     navigateToPizzaScreen: (item: IItem) => void;
-}
+} & ICartItem
 
-const CartItem: FC<Props> = ({ itemId, navigateToPizzaScreen }) => {
+const CartItem: FC<Props> = ({
+    navigateToPizzaScreen,
+    description,
+    id,
+    image, 
+    isNew,
+    newPrice, 
+    oldPrice,
+    quantity,
+    title
+}) => {
 
-    const item = cartStore.getById(itemId);
-
+    const item: ICartItem = {
+        description,
+        id,
+        image,
+        isNew,
+        newPrice,
+        oldPrice,
+        quantity,
+        title
+    }
     const removeFromCart = () => {
-        cartStore.remove(itemId);
+        cartStore.remove(id);
     }
 
     const addToCart = () => {
@@ -64,15 +81,13 @@ const styles = StyleSheet.create({
 
     descriptionContainer: {
         flex: 1,
-        alignItems: 'center',
-        gap: 10,
+        gap: 5,
     },
 
     quantityContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        gap: 10,
     },
 
     itemTitle: {
