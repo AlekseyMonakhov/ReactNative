@@ -6,6 +6,7 @@ import { cartStore } from '@/src/store/cartStore';
 import StyledButton from '@/src/components/Button';
 import { colors } from '@/src/utils/colors';
 import BaseItem from '@/src/components/BaseItem';
+import AddToFavoriteBtn from '@/src/components/AddToFavoriteBtn';
 
 
 type Props = {
@@ -43,6 +44,12 @@ const CartItem: FC<Props> = ({ itemId, navigateToPizzaScreen }) => {
                         <Text style={styles.btnText}>-</Text>
                     </StyledButton>
                 </View>
+
+
+                <AddToFavoriteBtn
+                    {...item}
+                    top={-20}
+                />
             </View>
 
 
