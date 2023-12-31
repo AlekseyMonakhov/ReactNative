@@ -18,7 +18,7 @@ const CartStack = () => {
                 component={CartScreen}
                 options={{
                     headerTitle: 'Cart',
-                    
+
                 }}
             />
 
@@ -28,7 +28,7 @@ const CartStack = () => {
                 options={{
                     headerTitle: 'Thank you',
                     headerBackVisible: false,
-                
+
                 }}
 
             />

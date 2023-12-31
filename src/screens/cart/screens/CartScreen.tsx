@@ -34,6 +34,7 @@ const CartScreen: FC<Props> = ({ navigation, route }) => {
                 ListEmptyComponent={<Empty message="Your cart is empty yet" />}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListFooterComponent={<ListFooter navigateToThankPage={navigateToThankPage} />}
+                contentContainerStyle={styles.contentContainer}
             />
         </View>
     )
@@ -52,4 +53,7 @@ const styles = StyleSheet.create({
     separator: {
         height: 25,
     },
+    contentContainer: {
+        paddingRight: 10
+    }
 })

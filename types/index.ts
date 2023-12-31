@@ -1,3 +1,4 @@
+import { HomeScreen } from "@/src/screens/home/screens/HomeScreen";
 export interface IItem {
     id: string;
     image: string;
@@ -24,6 +25,7 @@ export type SettingStackParamList = {
 };
 
 export type CartStackParamList = {
+    HomeScreen: undefined;
     CartScreen: undefined;
     ThankPageScreen: ICartItem[];
     PizzaScreen: IItem;

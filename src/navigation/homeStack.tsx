@@ -21,6 +21,8 @@ const HomeScreenWithDrawer = () => {
                 name="HomeScreen"
                 component={HomeScreen}
 
+                
+
             />
         </Drawer.Navigator>
     );
@@ -38,7 +40,9 @@ const HomeStack = () => {
             <HomeStackNav.Screen
                 name="HomeDrawer"
                 component={HomeScreenWithDrawer}
-                options={{ headerTitle: 'Home' }}
+                options={{ 
+                    headerTitle: 'Home',
+                 }}
             />
 
             <HomeStackNav.Screen
