@@ -270,14 +270,5 @@
       "id": 30,
       "isNew": true
     }
-  ],
-  "users": [
-    {
-      "id": 1,
-      "name": "John Doe12344",
-      "email": "some@gmail.com",
-      "address": "Some Street 123",
-      "orders": {}
-    }
   ]
 }

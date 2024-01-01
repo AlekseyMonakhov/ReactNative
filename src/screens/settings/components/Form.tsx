@@ -17,7 +17,7 @@ interface FormErrors {
     address?: string;
 }
 
-function reducer(state: Props, action: { type: ActionType, payload: string }) {
+function reducer(state: IUser, action: { type: ActionType, payload: string }) {
     switch (action.type) {
         case 'name':
             return { ...state, name: action.payload }
@@ -38,8 +38,11 @@ const formSchema = z.object({
 })
 
 const SettingsForm: FC<Props> = (data) => {
-    const [userData, dispatch] = useReducer(reducer, data)
+    const { onUserEdit, ...userInitialData } = data;
+
+    const [userData, dispatch] = useReducer(reducer, userInitialData);
     const [errors, setErrors] = useState<FormErrors>({});
+
 
 
     const onSaveHandler = async () => {
@@ -47,7 +50,7 @@ const SettingsForm: FC<Props> = (data) => {
             formSchema.parse(userData)
 
             const res = await fetch(process.env.EXPO_PUBLIC_API_URL + '/users/1', {
-                method: 'PUT',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -80,6 +83,7 @@ const SettingsForm: FC<Props> = (data) => {
             <TextInput
                 style={styles.input}
                 onFocus={() => setErrors((prev) => ({ ...prev, name: undefined }))}
+                onChange={() => setErrors((prev) => ({ ...prev, name: undefined }))}
                 placeholder='Name'
                 defaultValue={userData.name}
                 onChangeText={(text) => dispatch({ type: 'name', payload: text })}
@@ -89,6 +93,7 @@ const SettingsForm: FC<Props> = (data) => {
 
             <TextInput
                 onFocus={() => setErrors((prev) => ({ ...prev, email: undefined }))}
+                onChange={() => setErrors((prev) => ({ ...prev, email: undefined }))}
                 style={styles.input}
                 placeholder='Email'
                 defaultValue={userData.email}
@@ -99,6 +104,7 @@ const SettingsForm: FC<Props> = (data) => {
 
             <TextInput
                 onFocus={() => setErrors((prev) => ({ ...prev, address: undefined }))}
+                onChange={() => setErrors((prev) => ({ ...prev, address: undefined }))}
                 style={styles.input}
                 placeholder='Address'
                 defaultValue={userData.address}

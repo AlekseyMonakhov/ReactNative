@@ -1,13 +1,17 @@
 
 
 import { colors } from '@/src/utils/colors';
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import { Text, StyleSheet } from 'react-native'
 
 
-const ListHeader = memo(() => {
+type Props = {
+    orderId: string;
+}
+
+const ListHeader: FC<Props> = memo(({ orderId }) => {
     return (
-        <Text style={styles.listHeader}>Order №123</Text>
+        <Text style={styles.listHeader}>Order Id: {orderId}</Text>
     )
 })
 

@@ -47,7 +47,7 @@ class CartStore {
         const cartItem = this.store.get(item.id);
 
         if (cartItem) {
-            cartItem.quantity++;
+            this.store.set(item.id, { ...cartItem, quantity: cartItem.quantity + 1 });
         } else {
             this.store.set(item.id, { ...item, quantity: 1 });
         }
@@ -63,7 +63,7 @@ class CartStore {
         if (cartItem.quantity === 1) {
             this.store.delete(itemId);
         } else {
-            cartItem.quantity--;
+            this.store.set(itemId, { ...cartItem, quantity: cartItem.quantity - 1 });
         }
 
         return this.totalQuantity;

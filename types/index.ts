@@ -43,6 +43,9 @@ export type SettingStackParamList = {
 export type CartStackParamList = {
     HomeScreen: undefined;
     CartScreen: undefined;
-    ThankPageScreen: ICartItem[];
+    ThankPageScreen: {
+        items: ICartItem[];
+        orderId: string;
+    };
     PizzaScreen: IItem;
 };

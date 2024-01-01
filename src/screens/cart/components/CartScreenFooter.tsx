@@ -7,7 +7,7 @@ import { colors } from '@/src/utils/colors';
 
 
 type Props = {
-    navigateToThankPage: () => void;
+    navigateToThankPage: (orderId: string) => void;
 }
 
 
@@ -18,7 +18,7 @@ const ListFooter: FC<Props> = ({ navigateToThankPage }) => {
     const checkout = useCallback(async () => {
         try {
             const res = await fetch(process.env.EXPO_PUBLIC_API_URL + '/users/1/orders', {
-                method: 'PUT',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -29,7 +29,7 @@ const ListFooter: FC<Props> = ({ navigateToThankPage }) => {
 
 
             cartStore.clear();
-            navigateToThankPage();
+            navigateToThankPage(res.orderId);
 
         } catch (e) {
             console.log(e);

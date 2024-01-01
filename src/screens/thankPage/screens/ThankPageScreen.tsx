@@ -21,9 +21,9 @@ const ThankPageScreen: FC<Props> = ({ navigation, route }) => {
 
     return (
         <View style={styles.container}>
-            <ListHeader />
+            <ListHeader orderId={route.params.orderId}/>
             <FlatList
-                data={route.params}
+                data={route.params.items}
                 renderItem={({ item }) => <ThankPageItem item={item} />}
                 keyExtractor={item => item.id}
                 contentContainerStyle={styles.contentContainer}

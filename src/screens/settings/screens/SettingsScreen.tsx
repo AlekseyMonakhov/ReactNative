@@ -13,7 +13,7 @@ const SettingsScreen = () => {
         process.env.EXPO_PUBLIC_API_URL + '/users/1',
         fetcher,
         {
-
+            revalidateIfStale: true,
         }
     )
 
@@ -37,7 +37,7 @@ const SettingsScreen = () => {
     return (
         <View>
             <Text style={styles.centered}>User info</Text>
-            <SettingsForm {...user} onUserEdit={onUserEdit}/>
+            <SettingsForm {...user} onUserEdit={onUserEdit} />
         </View>
     )
 

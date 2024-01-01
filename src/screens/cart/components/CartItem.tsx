@@ -17,9 +17,9 @@ const CartItem: FC<Props> = ({
     navigateToPizzaScreen,
     description,
     id,
-    image, 
+    image,
     isNew,
-    newPrice, 
+    newPrice,
     oldPrice,
     quantity,
     title

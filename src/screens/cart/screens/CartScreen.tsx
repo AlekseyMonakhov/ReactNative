@@ -19,8 +19,11 @@ const CartScreen: FC<Props> = ({ navigation, route }) => {
     }, [])
 
 
-    const navigateToThankPage = useCallback(() => {
-        navigation.navigate('ThankPageScreen', cartItems)
+    const navigateToThankPage = useCallback((orderId: string) => {
+        navigation.navigate('ThankPageScreen', {
+            items: cartItems,
+            orderId: orderId
+        })
     }, [])
 
 
