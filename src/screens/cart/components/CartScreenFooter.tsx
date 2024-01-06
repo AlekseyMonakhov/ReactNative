@@ -1,9 +1,12 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { cartStore } from '@/src/store/cartStore';
 import { observer } from 'mobx-react';
 import StyledButton from '@/src/components/Button';
 import { colors } from '@/src/utils/colors';
+import { AuthContext } from '@/src/ctx/AuthContext';
+import { parseJwt } from '@/src/utils/helpers';
+import { Payload } from '@/types';
 
 
 type Props = {
@@ -15,14 +18,20 @@ const ListFooter: FC<Props> = ({ navigateToThankPage }) => {
     const totalPrice = cartStore.totalPrice;
     const cartItems = cartStore.getAll;
 
+    const { token } = useContext(AuthContext);
+    const { userId } = parseJwt<Payload>(token);
+
     const checkout = useCallback(async () => {
         try {
-            const res = await fetch(process.env.EXPO_PUBLIC_API_URL + '/users/1/orders', {
+            const res = await fetch(process.env.EXPO_PUBLIC_API_URL + `/users/${userId}/orders`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify(cartItems)
+                body: JSON.stringify({
+                    orders: cartItems
+                })
             }).then((res) => res.json());
 
             console.log(res);

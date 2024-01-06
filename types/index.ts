@@ -49,3 +49,13 @@ export type CartStackParamList = {
     };
     PizzaScreen: IItem;
 };
+
+export type AuthStackParamList = {
+    AuthScreen: undefined;
+};
+
+export type Payload = {
+    userId: string;
+    iat: number;
+    exp: number;
+};

@@ -1,21 +1,42 @@
 import { fetcher } from "@/src/api";
 import { colors } from "@/src/utils/colors";
-import { IUser } from "@/types";
+import { IUser, Payload } from "@/types";
 import { View, Text, ActivityIndicator, StyleSheet, TextInput } from "react-native";
 
 import useSWR from "swr";
 import SettingsForm from "../components/Form";
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
+import { AuthContext } from "@/src/ctx/AuthContext";
+import { parseJwt } from "@/src/utils/helpers";
+
+
 
 
 const SettingsScreen = () => {
-    const { data: user, isLoading, mutate } = useSWR<IUser>(
-        process.env.EXPO_PUBLIC_API_URL + '/users/1',
-        fetcher,
+    const { token } = useContext(AuthContext);
+    const { userId } = parseJwt<Payload>(token);
+
+
+
+
+
+    const { data: user, isLoading, mutate, error } = useSWR<IUser>(
+        process.env.EXPO_PUBLIC_API_URL + '/users/' + userId,
+        (url) => fetcher(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }),
         {
             revalidateIfStale: true,
+            revalidateOnMount: true,
+            revalidateOnReconnect: true,
+            dedupingInterval: 0,
         }
     )
+
 
 
     const onUserEdit = useCallback((user: IUser) => {
@@ -23,6 +44,16 @@ const SettingsScreen = () => {
             revalidate: false
         })
     }, [])
+
+
+
+    if (error) {
+        return (
+            <View style={styles.loaderContainer}>
+                <Text style={styles.centered}>{error.message}</Text>
+            </View>
+        )
+    }
 
     if (isLoading || !user) {
         return (

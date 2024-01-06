@@ -1,15 +1,23 @@
 import { colors } from "@/src/utils/colors";
-import { IUser } from "@/types";
-import { FC, memo, useReducer, useState } from "react";
+import { IUser, Payload } from "@/types";
+import { FC, memo, useCallback, useContext, useReducer, useState } from "react";
 import { View, TextInput, StyleSheet, Text } from "react-native";
 import StyledButton from "@/src/components/Button";
 import { z } from "zod";
+import { AuthContext } from "@/src/ctx/AuthContext";
+import { parseJwt } from "@/src/utils/helpers";
 
 type Props = IUser & {
     onUserEdit: (user: IUser) => void;
 }
 
-type ActionType = 'name' | 'email' | 'address'
+
+const enum ActionType {
+    NAME = 'name',
+    EMAIL = 'email',
+    ADDRESS = 'address',
+
+}
 
 interface FormErrors {
     name?: string;
@@ -17,13 +25,15 @@ interface FormErrors {
     address?: string;
 }
 
+
+
 function reducer(state: IUser, action: { type: ActionType, payload: string }) {
     switch (action.type) {
-        case 'name':
+        case ActionType.NAME:
             return { ...state, name: action.payload }
-        case 'email':
+        case ActionType.EMAIL:
             return { ...state, email: action.payload }
-        case 'address':
+        case ActionType.ADDRESS:
             return { ...state, address: action.payload }
         default:
             return state
@@ -43,16 +53,18 @@ const SettingsForm: FC<Props> = (data) => {
     const [userData, dispatch] = useReducer(reducer, userInitialData);
     const [errors, setErrors] = useState<FormErrors>({});
 
-
+    const { token, setToken } = useContext(AuthContext);
+    const { userId } = parseJwt<Payload>(token);
 
     const onSaveHandler = async () => {
         try {
             formSchema.parse(userData)
 
-            const res = await fetch(process.env.EXPO_PUBLIC_API_URL + '/users/1', {
+            const res = await fetch(process.env.EXPO_PUBLIC_API_URL + '/users/' + userId, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(userData)
             }).then((res) => res.json());
@@ -76,6 +88,10 @@ const SettingsForm: FC<Props> = (data) => {
         }
     }
 
+    const onLogoutHandler = useCallback(() => {
+        setToken(null);
+    }, [])
+
 
 
     return (
@@ -86,7 +102,7 @@ const SettingsForm: FC<Props> = (data) => {
                 onChange={() => setErrors((prev) => ({ ...prev, name: undefined }))}
                 placeholder='Name'
                 defaultValue={userData.name}
-                onChangeText={(text) => dispatch({ type: 'name', payload: text })}
+                onChangeText={(text) => dispatch({ type: ActionType.NAME, payload: text })}
             />
 
             {errors.name && <Text style={styles.error}>{errors.name}</Text>}
@@ -97,7 +113,7 @@ const SettingsForm: FC<Props> = (data) => {
                 style={styles.input}
                 placeholder='Email'
                 defaultValue={userData.email}
-                onChangeText={(text) => dispatch({ type: 'email', payload: text })}
+                onChangeText={(text) => dispatch({ type: ActionType.EMAIL, payload: text })}
             />
 
             {errors.email && <Text style={styles.error}>{errors.email}</Text>}
@@ -108,15 +124,22 @@ const SettingsForm: FC<Props> = (data) => {
                 style={styles.input}
                 placeholder='Address'
                 defaultValue={userData.address}
-                onChangeText={(text) => dispatch({ type: 'address', payload: text })}
+                onChangeText={(text) => dispatch({ type: ActionType.ADDRESS, payload: text })}
             />
 
             {errors.address && <Text style={styles.error}>{errors.address}</Text>}
 
-            <StyledButton
-                onPress={onSaveHandler}>
-                <Text style={styles.btnText}>Save</Text>
-            </StyledButton>
+            <View style={styles.btnContainer}>
+                <StyledButton
+                    onPress={onSaveHandler}>
+                    <Text style={styles.btnText}>Update Info</Text>
+                </StyledButton>
+
+                <StyledButton
+                    onPress={onLogoutHandler}>
+                    <Text style={styles.btnText}>Logout</Text>
+                </StyledButton>
+            </View>
         </View>
     )
 }
@@ -136,6 +159,10 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         borderRadius: 10,
         padding: 10,
+    },
+    btnContainer: {
+        justifyContent: 'center',
+        gap: 10,
     },
     btnText: {
         color: colors.white,

@@ -1,12 +1,23 @@
 import { NavigationContainer } from "@react-navigation/native";
 import HomeTabs from "./homeTabs";
-
+import AuthStack from "./authStack";
+import useAuth from "../hooks/useAuth";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../ctx/AuthContext";
 
 const Navigator = () => {
-    
+
+    const { token, setToken } = useContext(AuthContext);
+
+
+
+
     return (
         <NavigationContainer>
-            <HomeTabs />
+            {token ?
+                <HomeTabs />
+                :
+                <AuthStack />}
         </NavigationContainer>
     )
 }
