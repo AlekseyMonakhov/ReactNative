@@ -33,6 +33,7 @@ export type HomeStackParamList = {
     HomeScreen: undefined;
     FavoriteScreen: undefined;
     HomeDrawer: undefined;
+    AuthScreen: undefined;
     PizzaScreen: IItem;
 };
 

@@ -35,8 +35,11 @@ const Header: FC<Props> = ({ setSearchValue, searchValue, navigateToModalScreen,
     }
 
 
+
+
+
     const animatedHeaderStyle = useAnimatedStyle(() => {
-        const scrollDistance = 100;
+        const scrollDistance = 500;
         const condition = scrollY.value > scrollDistance && scrollY.value < 1500;
 
         const height = condition ? withTiming(0) : withTiming(75);
@@ -99,6 +102,7 @@ export default memo(Header);
 
 const styles = StyleSheet.create({
     container: {
+        overflow: 'hidden',
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
     },
 
     input: {
-        flexBasis: '75%',
+        flex: 1,
         flexDirection: 'row',
     }
 })

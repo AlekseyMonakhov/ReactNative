@@ -1,9 +1,19 @@
 import { colors } from '@/src/utils/colors'
-import React from 'react'
+import React, { FC, useCallback, useContext } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
+import { DrawerContentComponentProps } from '@react-navigation/drawer';
+import { AuthContext } from '@/src/ctx/AuthContext';
+import StyledButton from '@/src/components/Button';
 
-const Drawer = () => {
+const Drawer: FC<DrawerContentComponentProps> = ({ navigation }) => {
+    const { setToken } = useContext(AuthContext);
+
+    const handleLogout = useCallback(() => {
+        setToken(null);
+    }, [])
+
+
     return (
         <View style={styles.container}>
             <View style={styles.menu}>
@@ -12,6 +22,10 @@ const Drawer = () => {
                 <Text>Menu 3</Text>
                 <Text>Menu 4</Text>
                 <Text>Menu 5</Text>
+
+                <StyledButton onPress={handleLogout}>
+                    <Text style={styles.logoutText}>Logout</Text>
+                </StyledButton>
             </View>
 
             <View style={styles.border} />
@@ -41,6 +55,7 @@ const styles = StyleSheet.create({
 
     menu: {
         rowGap: 20,
+        alignItems: 'center',
     },
 
     border: {
@@ -64,6 +79,11 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         alignItems: 'center',
+    },
+
+    logoutText: {
+        color: colors.white,
+        fontSize: 16,
     }
 
 })

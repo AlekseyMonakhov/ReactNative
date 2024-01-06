@@ -7,7 +7,7 @@ import { AuthContext } from "../ctx/AuthContext";
 
 const Navigator = () => {
 
-    const { token, setToken } = useContext(AuthContext);
+    const { token } = useContext(AuthContext);
 
 
 
