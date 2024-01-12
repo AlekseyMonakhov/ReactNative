@@ -4,7 +4,7 @@ import { cartStore } from "@/src/store/cartStore"
 import Empty from '@/src/components/Empty';
 import { observer } from 'mobx-react';
 import ListFooter from '../components/CartScreenFooter';
-import { CartStackParamList, IItem } from "@/types";
+import { CartStackParamList, ICartItem, IItem } from "@/types";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FC, useCallback } from "react";
 
@@ -19,7 +19,7 @@ const CartScreen: FC<Props> = ({ navigation, route }) => {
     }, [])
 
 
-    const navigateToThankPage = useCallback((orderId: string) => {
+    const navigateToThankPage = useCallback((orderId: string, cartItems: ICartItem[]) => {
         navigation.navigate('ThankPageScreen', {
             items: cartItems,
             orderId: orderId

@@ -6,11 +6,11 @@ import StyledButton from '@/src/components/Button';
 import { colors } from '@/src/utils/colors';
 import { AuthContext } from '@/src/ctx/AuthContext';
 import { parseJwt } from '@/src/utils/helpers';
-import { Payload } from '@/types';
+import { ICartItem, Payload } from '@/types';
 
 
 type Props = {
-    navigateToThankPage: (orderId: string) => void;
+    navigateToThankPage: (orderId: string, cartItems: ICartItem[]) => void;
 }
 
 
@@ -38,14 +38,14 @@ const ListFooter: FC<Props> = ({ navigateToThankPage }) => {
 
 
             cartStore.clear();
-            navigateToThankPage(res.orderId);
+            navigateToThankPage(res.orderId, cartItems);
 
         } catch (e) {
             console.log(e);
         }
 
 
-    }, [])
+    }, [cartItems])
 
     if (!totalPrice) {
         return null;
