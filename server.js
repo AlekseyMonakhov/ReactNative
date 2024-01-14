@@ -123,8 +123,8 @@ server.post('/users/:id', isAuthenticated, (req, res) => {
         user.email = email
         user.address = address
 
-        const { password, ...updatedUser } = users.get(id)
-
+        const { password, ...updatedUser } = user;
+        
         res.status(201).jsonp(updatedUser)
     } else {
         res.sendStatus(404)
@@ -135,7 +135,7 @@ server.post('/users/:id', isAuthenticated, (req, res) => {
 server.post('/users/:id/orders', isAuthenticated, (req, res) => {
 
     const id = req.params.id
-    const user  = users.get(id)
+    const user = users.get(id)
     const newOrders = req.body.orders;
     const uniqueId = Math.random().toString(36).substr(2, 9);
 
